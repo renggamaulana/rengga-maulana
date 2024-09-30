@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -24,4 +24,45 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+} */
+
+
+.hidden-section {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+@media(prefers-reduced-motion) {
+  .hidden-section {
+      transition: none;
+  }
+}
+
+
+/* Default styles for light mode */
+:root {
+  --bg-color: #f9fafb; /* Equivalent to bg-gray-50 */
+  --text-color: #1f2937; /* Equivalent to text-gray-800 */
+}
+
+/* If the user's system is in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #111827; /* Equivalent to bg-gray-900 */
+    --text-color: #f9fafb; /* Equivalent to text-gray-50 */
+  }
+}
+
+/* Apply these variables to your body or main tag */
+body, main {
+  background-color: #f9fafb;
+  color: var(--text-color);
 }
