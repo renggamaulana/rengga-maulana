@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navbar from './Navbar';
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [darkMode, setDarkMode] = useState(false);
@@ -30,6 +30,14 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       localStorage.setItem('theme', newMode ? 'dark' : 'light');
       return newMode;
     });
+  };
+
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const handleScrollToSection = () => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

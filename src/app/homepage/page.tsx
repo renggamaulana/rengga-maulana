@@ -53,6 +53,39 @@ export default function Homepage() {
 
     return(
         <div className="flex flex-col gap-8 px-10">
+            <nav className="fixed bottom-5 z-10 left-1/2 transform -translate-x-1/2 px-8 py-2 rounded-full bg-gray-50 dark:bg-gray-900 shadow-lg">
+                <ul className="flex gap-10 text-gray-800 dark:text-white">
+                    <li>
+                        <a className="hover:text-teal-400" href="#profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                            <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                            <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a className="hover:text-teal-400" href="#projects">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a className="hover:text-teal-400" href="#stack">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a className="hover:text-teal-400" href="#about">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
          <section ref={(el) => {sectionsRef.current[0] = el}} className="hidden-section md:min-h-screen flex items-center" id="profile">
             <div className="p-10 md:p-20 flex flex-col gap-10">
               <div className="text-center">
@@ -62,28 +95,28 @@ export default function Homepage() {
               <p className="text-center text-gray-800 dark:text-gray-50 text-2xl tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold italic">beautifully</span> designed and <span className="font-bold italic">effectively</span> functional websites.</p>
               <div className="flex justify-center gap-10">
                 <a target="_blank" href="https://github.com/renggamaulana">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:text-blue-300 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:dark:text-teal-400 hover:text-teal-400 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z" clip-rule="evenodd"/>
                   </svg>
                 </a>
                 <a target="_blank" href="https://www.linkedin.com/in/rengga-maulana-93b901194/">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:text-blue-300 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:dark:text-teal-400 hover:text-teal-400 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd"/>
                     <path d="M7.2 8.809H4V19.5h3.2V8.809Z"/>
                   </svg>
                 </a>
                 <a target="_blank" href="https://www.instagram.com/renggaamln/">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:text-blue-300 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:dark:text-teal-400 hover:text-teal-400 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path fill="currentColor" fill-rule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clip-rule="evenodd"/>
                   </svg>
                 </a>
                 <a target="_blank" href="https://www.facebook.com/profile.php?id=100004812490429&locale=id_ID">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:text-blue-300 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 hover:dark:text-teal-400 hover:text-teal-400 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z" clip-rule="evenodd"/>
                   </svg>
                 </a>
                 {/* <a href="https://open.spotify.com/show/6ntd3vlAEAWSQHhjt5WhHG?si=c956e8f08fde4792" target="_blank">
-                  <svg className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white hover:text-blue-300 dark:hover:text-blue-300 fill-current" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0,0,300,150">
+                  <svg className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white hover:text-teal-400 dark:hover:text-blue-300 fill-current" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0,0,300,150">
                     <g transform="">
                       <g fill="currentColor" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
                         <g transform="translate(20.43392,-10.19392) scale(5.12,5.12)">
@@ -301,7 +334,7 @@ export default function Homepage() {
 
             </div>
           </section>
-          <section ref={(el) => {sectionsRef.current[3] = el}} className="hidden-section min-h-screen pt-5" id="about">
+          <section ref={(el) => {sectionsRef.current[3] = el}} className="hidden-section pt-5" id="about">
             <div className="mb-3">
               <h1 className="text-3xl text-gray-800 dark:text-gray-300 font-bangers font-semibold tracking-wider uppercase">About</h1>
               <p className="text-xl text-gray-500">I’m Rengga Maulana — an Indonesian Software Engineer currently based in Bogor, West Java.</p>
