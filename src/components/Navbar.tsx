@@ -10,39 +10,9 @@ import { FiMenu, FiX } from 'react-icons/fi'
 export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void, darkMode: boolean,}) {
 
   let name;
-    const [  open, setOpen ] = useState( false )
-    const [ seo, setSeo ] = useState("Test")
+    const [ open, setOpen ] = useState( false )
 
   return (
-    // <nav className="flex sticky top-0 w-full z-10 bg-gray-50 dark:bg-gray-900 justify-between items-center px-10 py-3 dark:text-white">
-    //   <h1 className="font-bold text-xl dark:text-gray-50 text-gray-800">
-    //       <Link href="/">DEVELOPBYREN</Link>
-    //   </h1>
-    //   <ul className="flex items-center gap-10">
-    //       <li>
-    //         <Link className="text-gray-800 dark:text-gray-50 font-semibold hover:underline" href="/">Profile</Link>
-    //       </li>
-    //       <li>
-    //           <Link className="text-gray-800 dark:text-gray-50 font-semibold hover:underline" href="/blogs">Blogs</Link>
-    //       </li>
-    //       <li>
-    //       <a href="../app/resume-rengga-maulana.pdf" download className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-cyan-500 to-teal-500 p-2 rounded-md">Resume</a>
-    //       </li>
-    //       <li>
-    //         <button
-    //           onClick={toggleTheme}
-    //           className="rounded-lg z-10 p-2 bg-gray-100 bg-opacity-80 backdrop-blur-md text-black dark:bg-gray-800 dark:bg-opacity-80 dark:text-white flex items-center transition-all duration-300 ease-in-out"
-    //         >
-    //           {darkMode ? (
-    //             <Image src={lightIcon} alt="Light Mode" className="w-5 h-5" />
-    //           ) : (
-    //             <Image src={darkIcon} alt="Dark Mode" className="w-5 h-5" />
-    //           )}
-    //         </button>
-    //       </li>
-    //   </ul>
-    // </nav>
-    <>
         <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-gray-900  items-center xl:max-w-7xl xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
           <h1 className="font-bold text-xl dark:text-gray-50 text-gray-800">
             <Link href="/">RENGGAMAULANA</Link>
@@ -67,7 +37,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
                     <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <a href="../app/resume-rengga-maulana.pdf" download className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-cyan-500 to-teal-500 p-2 rounded-md">Resume</a>
+                  <a href="./resume-rengga-maulana.pdf" download className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-cyan-500 to-teal-500 p-2 rounded-md">Resume</a>
                 </li>
                 <li>
                   <button
@@ -84,8 +54,5 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
             </ul>
          </nav>
         </header>
-
-    </>
-    
   );
 }

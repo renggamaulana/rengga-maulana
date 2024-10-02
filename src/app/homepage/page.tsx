@@ -17,7 +17,6 @@ import profile  from '../../assets/images/profile.jpeg'
 import simpleMind  from '../../assets/images/simple-mind.png'
 
 export default function Homepage() {
-
     const sectionsRef = useRef<(HTMLElement | null)[]>([]);
     // Intersection Observer untuk mengamati elemen tersembunyi
     useEffect(() => {
@@ -90,9 +89,9 @@ export default function Homepage() {
             <div className="p-10 md:p-20 flex flex-col gap-10">
               <div className="text-center">
                 <a href="#profile" className="text-5xl text-teal-500 font-semibold font-bangers tracking-widest uppercase">Rengga Maulana</a>
-                <p className="pt-2 dark:text-gray-50 text-gray-800 text-2xl font-semibold font-bangers tracking-wider">Fullstack Developer</p>
+                <p className="pt-2 dark:text-gray-50 text-gray-800 text-2xl font-semibold font-bangers tracking-widest">Fullstack Developer</p>
               </div>
-              <p className="text-center text-gray-800 dark:text-gray-50 text-2xl tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold italic">beautifully</span> designed and <span className="font-bold italic">effectively</span> functional websites.</p>
+              <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold italic">beautifully</span> designed and <span className="font-bold italic">effectively</span> functional websites.</p>
               <div className="flex justify-center gap-10">
                 <a target="_blank" href="https://github.com/renggamaulana">
                   <svg className="w-6 h-6 md:w-8 md:h-8 hover:dark:text-cyan-500 hover:text-cyan-500 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -133,27 +132,27 @@ export default function Homepage() {
                 <h1 className="text-3xl text-gray-800 dark:text-gray-300 font-semibold mb-5 font-bangers tracking-wider uppercase">Projects</h1>
                 <div className="grid grid-cols-1 gap-3 md:gap-10 md:grid-cols-2">
                     {/* Dahpone */}
-                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 md:rounded-lg px-3 py-5 md:px-5 md:py-8">
-                    <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
-                        <Image src={daphone} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
-                        <a href="https://daphone.my.id" className="hover:text-teal-400 group">
-                        <div className="flex gap-5 items-center">
-                            <h3 className="text-gray-800 dark:text-gray-50 text-xl font-semibold group-hover:text-teal-400">Daphone</h3>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800 dark:text-gray-50 size-6 group-hover:-translate-y-1 group-hover:text-teal-400">
-                            <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L8.03 17.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V10.5a.75.75 0 0 1 1.5 0v8.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h8.25a.75.75 0 0 1 0 1.5H5.25Z" clip-rule="evenodd" />
-                            </svg>
+                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 rounded-lg px-3 py-5 md:px-5 md:py-8">
+                        <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
+                            <Image src={daphone} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
+                            <a href="https://daphone.my.id" className="hover:text-teal-400 group">
+                            <div className="flex gap-5 items-center">
+                                <h3 className="text-gray-800 dark:text-gray-50 text-xl font-semibold group-hover:text-teal-400">Daphone</h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800 dark:text-gray-50 size-6 group-hover:-translate-y-1 group-hover:text-teal-400">
+                                <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L8.03 17.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V10.5a.75.75 0 0 1 1.5 0v8.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h8.25a.75.75 0 0 1 0 1.5H5.25Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            </a>
                         </div>
-                        </a>
-                    </div>
-                    <p className="font-medium text-gray-500 dark:text-gray-400 text-lg mt-5"><span className="font-bold">Daphone</span> is an e-commerce website for selling or trade-in a secondhand gadget from around Jabodetabek.</p>
-                    <div className="flex flex-wrap gap-3 mt-4">
-                        <span className="px-4 py-1 bg-gray-50 border border-[#38bdf8] dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-[#38bdf8] rounded-full">Laravel</span>
-                        <span className="px-4 py-1 bg-gray-50 border border-[#38bdf8] dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-[#38bdf8] rounded-full">TailwindCSS</span>
-                        <span className="px-4 py-1 bg-gray-50 border border-[#38bdf8] dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-[#38bdf8] rounded-full">Vite</span>
-                    </div>
+                        <p className="font-medium text-gray-500 dark:text-gray-400 text-lg mt-5"><span className="font-bold">Daphone</span> is an e-commerce website for selling or trade-in a secondhand gadget from around Jabodetabek.</p>
+                        <div className="flex flex-wrap gap-3 mt-4">
+                            <span className="px-4 py-1 bg-gray-50 border border-[#38bdf8] dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-[#38bdf8] rounded-full">Laravel</span>
+                            <span className="px-4 py-1 bg-gray-50 border border-[#38bdf8] dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-[#38bdf8] rounded-full">TailwindCSS</span>
+                            <span className="px-4 py-1 bg-gray-50 border border-[#38bdf8] dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-[#38bdf8] rounded-full">Vite</span>
+                        </div>
                     </div>
                 {/* Atmosight */}
-                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 md:rounded-lg px-3 py-5 md:px-5 md:py-8">
+                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 rounded-lg px-3 py-5 md:px-5 md:py-8">
                     <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                         <Image src={atmosight} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
                         <a href="https://atmosight.vercel.app" target="_blank" className="hover:text-teal-400 group">
@@ -173,7 +172,7 @@ export default function Homepage() {
                     </div>
                     </div>
                     {/* Everyday Quotes */}
-                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 md:rounded-lg px-3 py-5 md:px-5 md:py-8">
+                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 rounded-lg px-3 py-5 md:px-5 md:py-8">
                     <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                         <Image src={everydayQuotes}className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
                         <a href="https://everyday-quotes.vercel.app" target="_blank" className="hover:text-teal-400 group">
@@ -193,7 +192,7 @@ export default function Homepage() {
                     </div>
                     </div>
                     {/* Restful API */}
-                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 md:rounded-lg px-3 py-5 md:px-5 md:py-8">
+                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 rounded-lg px-3 py-5 md:px-5 md:py-8">
                     <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                         <Image src={restfulApi} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
                         <a href="https://github.com/renggamaulana/concreteAI-be-assignment" target="_blank" className="hover:text-teal-400 group">
@@ -213,7 +212,7 @@ export default function Homepage() {
                     </div>
                     </div>
                 {/* Suzu Nihongo */}
-                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 md:rounded-lg px-3 py-5 md:px-5 md:py-8">
+                    <div className="shadow-lg dark:md:border dark:md:border-gray-700 rounded-lg px-3 py-5 md:px-5 md:py-8">
                     <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                         <Image src={suzuNihongo} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
                         <a href="https://suzu-nihongo-idn.vercel.app/" target="_blank" className="hover:text-teal-400 group">
@@ -341,7 +340,7 @@ export default function Homepage() {
                 </div>
                 <div>
                 <Image src={profile} className="rounded w-36 md:w-56 float-left mr-3" alt="" />
-                <p className="text-gray-500">With over 3 years of experience, I specialize in building and managing responsive websites using HTML, CSS, JavaScript, and PHP, along with frameworks like Nextjs(React), Vue JS, Laravel & Nodejs. I'm passionate about technology and continuously learning, with strong analytical skills and attention to detail.</p>
+                <p className="text-gray-500">With over 3 years of experience, I specialize in building and managing responsive websites using HTML, CSS, JavaScript, and PHP, along with frameworks like NextJS(React), VueJS, Angular, Ionic, Laravel & Nodejs. I'm passionate about technology and continuously learning, with strong analytical skills and attention to detail.</p>
                 </div>
             </section>
             <footer ref={(el) => {sectionsRef.current[4] = el}} className="hidden-section">
