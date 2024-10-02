@@ -32,7 +32,7 @@ const Blogs = async () => {
         },
     ]
     return(
-        <div className="min-h-screen px-5 py-10 flex lg:flex-nowrap flex-wrap gap-10">
+        <div className="min-h-screen px-5 lg:px-20 py-10 flex lg:flex-nowrap flex-wrap gap-10">
             <div className="w-full lg:w-2/3">
                 <h1 className="text-2xl text-gray-800 dark:text-gray-50 font-bold">Posts</h1>
                 {/* Post list */}
@@ -49,9 +49,9 @@ const Blogs = async () => {
                     })}
                 </div>
             </div>
-            <div className="w-full md:w-1/3 lg:w-1/3 flex flex-col gap-5 overflow-auto">
+            <div className="w-full md:w-1/3 lg:w-1/3 flex flex-col self-baseline gap-5">
                 <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
-                <div className="flex justify-between gap-3">
+                <div className="flex flex-wrap gap-3">
                     {categories.map((category) => {
                         return(
                                 <Link href="#" key={category.id} className="rounded-lg px-3 py-1 bg-black dark:bg-white hover:underline opacity-75 font-semibold text-white dark:text-gray-800 self-baseline">#{category.name}</Link>
