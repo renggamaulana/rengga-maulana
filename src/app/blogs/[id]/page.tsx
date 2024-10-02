@@ -1,22 +1,21 @@
-'use client'
 
 import Link from "next/link"
 
-export default function SinglePost() {
-  
+export default function Blog() {
+
   return (
-    <div className="p-10 flex flex-col gap-10 justify-center px-60">
+    <div className="p-10 flex flex-col gap-10 justify-center px-7 lg:px-60">
         {/* Container */}
         <div className="flex flex-col gap-5">
             <h1 className="text-4xl text-gray-800 dark:text-gray-50 font-bold">Introduction to Smooth Scrolling in Next.js: A Simple Guide 🚀</h1>
             <p className="text-sm dark:text-gray-400 text-gray-700">Published in <span className="text-gray-800 dark:text-gray-100">JavaScript </span> · 4 min read · Sep 30, 2024</p>
         </div>
-        <hr/>
+        <div className="divide-slate-600"></div>
         {/* Post's body */}
         <div>
             <h3 className="text-2xl text-gray-800 dark:text-gray-50 font-semibold ">Introduction</h3>
-            <p className="text-lg tracking-wide dark:text-gray-50 text-gray-600 leading-8">In web development, user experience (UX) is one of the most critical aspects that can determine the success of a website. Among the many factors contributing to good UX, smooth scrolling is often overlooked. Yet, it plays an essential role in providing a seamless experience, especially on single-page applications (SPAs) or websites that use anchor links to navigate between sections.</p>
-            <p className="text-lg tracking-wide dark:text-gray-50 text-gray-600 leading-8">This post will walk you through the process of implementing smooth scrolling in a Next.js project. We will also discuss why smooth scrolling matters and how it can improve the overall feel of your website. By the end of this post, you'll have a clear understanding of how to create a professional, polished navigation experience for your users.</p>
+            <p className="text-lg lg:tracking-wide dark:text-gray-50 text-gray-600 lg:leading-8">In web development, user experience (UX) is one of the most critical aspects that can determine the success of a website. Among the many factors contributing to good UX, smooth scrolling is often overlooked. Yet, it plays an essential role in providing a seamless experience, especially on single-page applications (SPAs) or websites that use anchor links to navigate between sections.</p>
+            <p className="text-lg lg:tracking-wide dark:text-gray-50 text-gray-600 lg:leading-8">This post will walk you through the process of implementing smooth scrolling in a Next.js project. We will also discuss why smooth scrolling matters and how it can improve the overall feel of your website. By the end of this post, you'll have a clear understanding of how to create a professional, polished navigation experience for your users.</p>
         </div>
         <div>
             <p className="text-md text-gray-700 dark:text-gray-50">Mau berlangganan newsletter? <a href="" className="underline">klik disini</a></p>

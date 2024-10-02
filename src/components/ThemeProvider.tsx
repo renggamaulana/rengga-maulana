@@ -32,14 +32,6 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     });
   };
 
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  const handleScrollToSection = () => {
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     // Ensure that the 'dark' class applies to all children
     <div className={darkMode ? 'dark' : ''}>
