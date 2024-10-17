@@ -1,16 +1,20 @@
 
 import Link from "next/link"
+import Blog from "../../../interfaces/blog"
+interface BlogPageProps {
+    blog: Blog
+}
 
-export default function Blog() {
+const SingleBlog = ({blog}: BlogPageProps) => {
 
   return (
     <div className="p-10 flex flex-col gap-10 justify-center px-7 lg:px-60">
         {/* Container */}
-        <div className="flex flex-col gap-5">
-            <h1 className="text-4xl text-gray-800 dark:text-gray-50 font-bold">Introduction to Smooth Scrolling in Next.js: A Simple Guide 🚀</h1>
-            <p className="text-sm dark:text-gray-400 text-gray-700">Published in <span className="text-gray-800 dark:text-gray-100">JavaScript </span> · 4 min read · Sep 30, 2024</p>
+        <div className="flex divide-y flex-col">
+            <h1 className="text-4xl text-gray-800 dark:text-gray-50 font-bold mb-5">Promise in JavaScript</h1>
+            <p className="text-sm dark:text-gray-400 text-gray-700 py-3">Published in <span className="text-gray-800 dark:text-gray-100">JavaScript </span> · 4 min read · Sep 30, 2024</p>
+            <p></p>
         </div>
-        <div className="divide-slate-600"></div>
         {/* Post's body */}
         <div>
             <h3 className="text-2xl text-gray-800 dark:text-gray-50 font-semibold ">Introduction</h3>
@@ -29,3 +33,19 @@ export default function Blog() {
     </div>
   )
 }
+
+// // Fungsi untuk fetch data blog spesifik berdasarkan ID
+// export const getStaticProps: GetStaticProps = async (context) => {
+//     const { id } = context.params!;
+//     const res = await fetch(`http://localhost:8000/api/blogs/${id}`); // Fetch blog berdasarkan ID
+//     const blog: Blog = await res.json();
+  
+//     return {
+//       props: {
+//         blog,
+//       },
+//       revalidate: 10, // Revalidate setiap 10 detik
+//     };
+//   };
+
+export default SingleBlog;
