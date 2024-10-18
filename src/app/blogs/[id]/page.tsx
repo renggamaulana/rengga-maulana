@@ -1,11 +1,8 @@
 
 import Link from "next/link"
-import Blog from "../../../interfaces/blog"
-interface BlogPageProps {
-    blog: Blog
-}
 
-const SingleBlog = ({blog}: BlogPageProps) => {
+
+const SingleBlog = () => {
 
   return (
     <div className="p-10 flex flex-col gap-10 justify-center px-7 lg:px-60">
