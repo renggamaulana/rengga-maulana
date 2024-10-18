@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "../components/ThemeProvider";
 import { Playfair_Display, Inter, League_Spartan, Fredericka_the_Great } from 'next/font/google'
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ['latin'] });
 const playfairDisplay = Playfair_Display({ subsets: ['latin'] });
@@ -16,6 +17,7 @@ export default function RootLayout({
   }: Readonly<{
     children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body

@@ -1,36 +1,43 @@
 "use client"
-import { getCategories, postBlogs } from "@/lib/api/axios";
+// import { getCategories, postBlogs } from "@/lib/api/axios";
+import { getCategories } from "../../../services/categoryServices";
 import { useEffect, useState } from "react";
 import Link from "next/link"
 import Loading from "@/components/Loading";
+import { useRouter } from 'next/navigation'
+import { fetchWithAuth } from "@/utils/auth";
+import { createBlog } from "../../../services/blogServices";
 export default function Page() {
 
-    const [categories, setCategories] = useState([]);
-    // const [error, setError] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
     const [content, setContent] = useState("");
     const [excerpt, setExcerpt] = useState("");
+    // const initialCategoryId = categories.length > 0 ? categories[0].id : 0;
     const [categoryId, setCategoryId] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+    const [categories, setCategories] = useState<any>([]);
 
      const onSubmit = async () => {
         // Generate excerpt
         const generatedExcerpt = generateExcerpt(content);
         setExcerpt(generatedExcerpt);
-        const blogData = {
+        const data = {
             title: title,
             slug: slug,
-            body: content,
+            content: content,
             excerpt: excerpt,
-            category_id: categoryId,
+            category_id: Number(categoryId)
         };
 
         try {
-            const res = await postBlogs(blogData);
-            console.log(res);
-        } catch (err) {
-            console.error(err);
+            await createBlog(data);
+            alert("Blog created successfully");
+            router.push("/blogs");
+        } catch (error) {
+            console.error("Error creating blog:", error);
         }
     }
 
@@ -49,22 +56,23 @@ export default function Page() {
         setSlug(generatedSlug);
     };
 
-    const generateExcerpt = (content:string) => {
+    const generateExcerpt = (content: string, maxLength: number = 150) => {
         const excerpt = content
-            .split('\n')                         // Split content into lines
-            .slice(0, 3)                         // Select first 3 lines
-            .map((line) => line.trim())           // Remove leading/trailing whitespace
-            .join(' ');
-        return excerpt;                                // Join lines with a space
-    }
-
+            .replace(/\n+/g, ' ')             // Replace new lines with a space
+            .trim()                           // Remove leading/trailing whitespace
+            .slice(0, maxLength);             // Limit excerpt to maxLength characters
+    
+        return excerpt.endsWith(' ') || excerpt.endsWith('.') 
+            ? excerpt.trim() 
+            : `${excerpt.trim()}...`;         // Add ellipsis if excerpt doesn't end with punctuation
+    };
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const data = await getCategories();
-                setCategories(data.data);
-                setLoading(false);
+                const data:any = await getCategories();
+                setCategories(data);
+                console.log(data);
             } catch (err) {
                 console.error(err);
             }

@@ -1,47 +1,55 @@
 "use client";
 
 import Link from "next/link"
-import Blog from '../../interfaces/blog'
 import { useEffect, useState } from "react";
-import { getBlogs, getCategories } from "@/lib/api/axios";
+import { getBlogs } from "../../services/blogServices"
+import { getCategories } from "../../services/categoryServices"
 import { HiPencilAlt } from "react-icons/hi";
 import Loading from "@/components/Loading";
 
 interface Categories {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }
 
-
+interface Blogs {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  category_id: string;
+}
 
 const Blogs =  () => {
     const username:string = "Rengga";
-    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [blogs, setBlogs] = useState<Blogs[]>([]);
     const [categories, setCategories] = useState<Categories[]>([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
+
       const fetchBlogs = async () => {
         try {
-          const data = await getBlogs();
-          setBlogs(data.data);
+          const data:any = await getBlogs();
+
+          setBlogs(data);
+          console.log(data);
           setLoading(false);
         } catch (err) {
           console.error(err);
         }
-      };
+      }
 
       const fetchCategories = async () => {
         try {
-          const data = await getCategories();
-          setCategories(data.data);
-          setLoading(false);
-        } catch (err:any) {
-          setError(err);
+          const data:any = await getCategories();
+          setCategories(data);
+        } catch (err) {
           console.error(err);
         }
-      };
+      }
 
       fetchBlogs();
       fetchCategories();
@@ -67,13 +75,12 @@ const Blogs =  () => {
                         return(
                             <div key={blog.id}>
                                 <h1 className="text-xl text-gray-800 dark:text-gray-50 font-semibold">{blog.title}</h1>
-                                <p className="text-sm font text-gray-600 dark:text-gray-50">October 29th, 2024</p>
+                                <p className="text-sm font text-gray-600 dark:text-gray-50">{blog.created_at}</p>
                                 <p className="mt-2 text-md tracking-wide text-gray-800 dark:text-gray-50">{blog.excerpt}</p>
                                 <Link href={`blogs/${blog.id}`}>
                                     <p className="pt-3 underline text-md text-gray-800 dark:text-gray-50">Read more...</p>
                                 </Link>
-                            </div>
-                        )
+                            </div>                        )
                     })}
                 </div>
                 )}
