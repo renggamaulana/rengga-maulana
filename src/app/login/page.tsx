@@ -1,42 +1,36 @@
 "use client"
 import axios from "axios";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
+import { auth } from "../../lib/firebase";
 
 export default function Login() {
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [error, setError] = useState("");
     const router = useRouter();
 
-    // const handleLogin = async (e:any) => {
-    //     e.preventDefault();
-    //     try {
-    //         const res = await axios.post("http://localhost:8000/api/login", {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({username, password})
-    //         });
-    //         const data = await res.data;
-    //         const token = localStorage.setItem("token", data.token);
-    //     } catch (error:any) {
-    //         if (error.response) {
-    //             // Check if error response has data for more info
-    //             if (error.response.status === 422) {
-    //               alert('Validation Error: ' + error.response.data.message); // or any specific field message
-    //             } else {
-    //               alert('Error: ' + error.response.data.message || 'An error occurred');
-    //             }
-    //           } else {
-    //             alert('Error: ' + error.message); // Handle other types of errors
-    //           }
-    //     }
-    // }
-    const handleLogin = () => {
-        alert('OK');
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            router.push("/blogs"); // Redirect after successful login
+        } catch (err) {
+            setError("Login failed: " + (err as Error).message);
+        }
+    };
+
+    if (error) {
+        return (
+            <div className="py-10 px-10 md:px-40 lg:px-80 flex justify-center">
+                <div className="flex w-full flex-col rounded-xl gap-5 bg-white shadow-lg p-10 items-center">
+                    <h1 className="text-3xl font-bold">Login</h1>
+                    <p className="text-red-500">{error}</p>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -49,8 +43,8 @@ export default function Login() {
                         <input
                             type="text"
                             name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="Username"
                             required
                             className="px-2 py-1 border border-gray-400 rounded-md"

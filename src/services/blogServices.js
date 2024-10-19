@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc, query, where } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 const blogCollectionRef = collection(db, "blogs");
@@ -48,11 +48,17 @@ export const deleteBlog = async (id) => {
 };
 
 // Get single blog by id
-export const getBlogById = async (id) => {
+export const getBlogDetail = async (slug) => {
   try {
-    const blogDoc = doc(db, "blogs", id);
-    const blog = await getDoc(blogDoc);
-    return blog.exists() ? blog.data() : null;
+    const q = query(collection(db, "blogs"), where("slug", '==', slug))
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0].data();
+      return doc;
+    } else {
+      console.log("No blog found with that slug");
+      return null;
+    }
   } catch (error) {
     throw new Error("Error fetching blog: " + error.message);
   }

@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link"
 import Loading from "@/components/Loading";
 import { useRouter } from 'next/navigation'
-import { fetchWithAuth } from "@/utils/auth";
 import { createBlog } from "../../../services/blogServices";
-export default function Page() {
+import { withAuth } from "../../../components/WithAuth";
+const CreateBlog = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [title, setTitle] = useState("");
@@ -28,14 +28,14 @@ export default function Page() {
             title: title,
             slug: slug,
             content: content,
-            excerpt: excerpt,
+            excerpt: generatedExcerpt,
             category_id: Number(categoryId)
         };
 
         try {
             await createBlog(data);
             alert("Blog created successfully");
-            router.push("/blogs");
+            // router.push("/blogs");
         } catch (error) {
             console.error("Error creating blog:", error);
         }
@@ -92,7 +92,7 @@ export default function Page() {
                 <h1 className="text-4xl mb-10 text-gray-800 dark:text-gray-50 font-bold">Create new blog</h1>
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-2 w-full">
-                        <label className="text-2xl dark:text-gray-50 font-semibold" htmlFor="title">Title</label>
+                        <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="title">Title</label>
                         <input
                             className="p-2 border border-gray-300 rounded-md"
                             placeholder="input title"
@@ -104,7 +104,7 @@ export default function Page() {
                         />
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                        <label className="text-2xl dark:text-gray-50 font-semibold" htmlFor="content">Content</label>
+                        <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="content">Content</label>
                         <textarea
                             placeholder="input content"
                             className="p-2 border border-gray-300 rounded-md"
@@ -115,7 +115,7 @@ export default function Page() {
                         </textarea>
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                        <label className="text-2xl dark:text-gray-50 font-semibold" htmlFor="categories">Categories</label>
+                        <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="categories">Categories</label>
                         <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="p-2 border bg-white border-gray-300 rounded-md" id="categories">
                             {categories.map((category:any) => (
                                 <option  key={category.id} value={category.id}>{category.name}</option>
@@ -130,3 +130,5 @@ export default function Page() {
         </div>
     );
 }
+
+export default withAuth(CreateBlog);

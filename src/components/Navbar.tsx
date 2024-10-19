@@ -1,16 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import darkIcon from '../assets/icons/dark.png';
 import lightIcon from '../assets/icons/light.png';
 import { FiMenu, FiX } from 'react-icons/fi'
+import LogoutButton from './LogoutButton';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void, darkMode: boolean,}) {
 
   let name;
     const [ open, setOpen ] = useState( false )
+
+    // const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // router.push("/login"); // Arahkan pengguna ke halaman login jika belum terautentikasi
+      }
+    });
+
+    return () => unsubscribe(); // Bersihkan listener saat komponen di-unmount
+  }, []);
 
   return (
         <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-gray-900  items-center xl:max-w-7xl xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
@@ -50,6 +65,9 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
                         <Image src={darkIcon} alt="Dark Mode" className="w-5 h-5" />
                       )}
                   </button>
+                </li>
+                <li>
+                  <LogoutButton />
                 </li>
             </ul>
          </nav>
