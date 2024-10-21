@@ -18,7 +18,7 @@ const AuthButton = () => {
   return (
     <>
       {user ? ( // Cek hanya apakah ada user yang terautentikasi
-        <button className="fixed bottom-10 right-[70px]">
+        <button className="fixed bottom-10 right-10 lg:right-[70px]">
           <Link href="/blogs/create">
             <HiPencilAlt className="text-3xl text-gray-800 hover:text-cyan-500 dark:text-gray-50 dark:hover:text-cyan-500" />
           </Link>

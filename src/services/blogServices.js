@@ -38,10 +38,19 @@ export const updateBlog = async (id, updatedBlogData) => {
 };
 
 // Delete blog
-export const deleteBlog = async (id) => {
+export const deleteBlog = async (slug) => {
   try {
-    const blogDoc = doc(db, "blogs", id);
-    await deleteDoc(blogDoc);
+    const blogsCollection = collection(db, "blogs");
+    const q = query(blogsCollection, where("slug", "==", slug)); // Query by slug
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      throw new Error("Blog not found");
+    }
+
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(docSnapshot.ref); // Delete each document that matches
+    });
   } catch (error) {
     throw new Error("Error deleting blog: " + error.message);
   }

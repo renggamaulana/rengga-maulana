@@ -77,7 +77,7 @@ const Blogs =  () => {
                             <div key={blog.id}>
                                 <h1 className="text-xl text-gray-800 dark:text-gray-50 font-semibold">{blog.title}</h1>
                                 <p className="text-sm font text-gray-600 dark:text-gray-50">{blog.created_at}</p>
-                                <p className="mt-2 text-md tracking-wide text-gray-800 dark:text-gray-50">{blog.excerpt}</p>
+                                <p className="mt-2 text-md tracking-wide text-gray-800 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog.excerpt }} />
                                 <Link href={`blogs/${blog.slug}`}>
                                     <p className="pt-3 underline text-md text-gray-800 dark:text-gray-50">Read more...</p>
                                 </Link>

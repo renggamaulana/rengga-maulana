@@ -1,49 +1,33 @@
-"use client"
-// import { getCategories, postBlogs } from "@/lib/api/axios";
-import { getCategories } from "../../../services/categoryServices";
-import { useEffect, useState } from "react";
-import Loading from "@/components/Loading";
-import { useRouter } from 'next/navigation'
-import { createBlog } from "../../../services/blogServices";
-import { withAuth } from "../../../components/WithAuth";
+"use client";
+
+import { createBlog, getBlogDetail } from "@/services/blogServices";
+import { notFound, usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { withAuth } from "@/components/WithAuth";
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
+import { getCategories } from "@/services/categoryServices";
+import { useRouter } from "next/navigation";
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
-const CreateBlog = () => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [title, setTitle] = useState("");
+const EditBlog =  () => {
+
+    const pathname = usePathname();
+    const slugParam = pathname.split("/").slice(-2, -1)[0];
+
+    const [blog, setBlog] = useState<any>();
     const [slug, setSlug] = useState("");
     const [content, setContent] = useState("");
     const [excerpt, setExcerpt] = useState("");
-    // const initialCategoryId = categories.length > 0 ? categories[0].id : 0;
     const [categoryId, setCategoryId] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const router = useRouter();
     const [categories, setCategories] = useState<any>([]);
+    const router = useRouter();
 
-    const onSubmit = async () => {
-    // Generate excerpt
-        const generatedExcerpt = generateExcerpt(content);
-        setExcerpt(generatedExcerpt);
-        const data = {
-            title: title,
-            slug: slug,
-            content: content,
-            excerpt: generatedExcerpt,
-            category_id: Number(categoryId)
-        };
 
-        try {
-            await createBlog(data);
-            alert("Blog created successfully");
-            router.push("/blogs");
-        } catch (error) {
-            console.error("Error creating blog:", error);
-        }
-    }
+    const [title, setTitle] = useState("");
+    const  [loading, setLoading] = useState(true);
 
 
     const handleTitleChange = (e:any) => {
@@ -65,7 +49,7 @@ const CreateBlog = () => {
             .replace(/\n+/g, ' ')             // Replace new lines with a space
             .trim()                           // Remove leading/trailing whitespace
             .slice(0, maxLength);             // Limit excerpt to maxLength characters
-    
+
         return excerpt.endsWith(' ') || excerpt.endsWith('.') 
             ? excerpt.trim() 
             : `${excerpt.trim()}...`;         // Add ellipsis if excerpt doesn't end with punctuation
@@ -83,6 +67,16 @@ const CreateBlog = () => {
       };
 
     useEffect(() => {
+        const fetchSingleBlog = async () => {
+            try {
+                const data = await getBlogDetail(slugParam!);
+                setBlog(data);
+                console.log(data);
+                setLoading(false);
+            } catch (err) {
+                notFound();
+            }
+        }
         const fetchCategories = async () => {
             try {
                 const data:any = await getCategories();
@@ -93,12 +87,30 @@ const CreateBlog = () => {
             }
         }
 
+        fetchSingleBlog();
         fetchCategories();
     }, []);
 
-    if(loading) {
-        return <Loading />;
-    }
+    const onSubmit = async () => {
+        // Generate excerpt
+            const generatedExcerpt = generateExcerpt(content);
+            setExcerpt(generatedExcerpt);
+            const data = {
+                title: title,
+                slug: slug,
+                content: content,
+                excerpt: generatedExcerpt,
+                category_id: Number(categoryId)
+            };
+    
+            try {
+                await createBlog(data);
+                alert("Blog created successfully");
+                router.push("/blogs");
+            } catch (error) {
+                console.error("Error creating blog:", error);
+            }
+        }
 
     return (
         <div className="">
@@ -114,23 +126,11 @@ const CreateBlog = () => {
                             type="text"
                             name="title"
                             id="title"
-                            value={title}
+                            value={blog?.title}
                             onChange={handleTitleChange}
                         />
                     </div>
-                    {/* <div className="flex flex-col gap-2 w-full">
-                        <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="content">Content</label>
-                        <textarea
-                            placeholder="input content"
-                            className="p-2 border border-gray-300 rounded-md"
-                            name="content"
-                            id="content"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}>
-                        </textarea>
-                    </div> */}
-                    {/* Content */} 
-                    <ReactQuill value={content} onChange={setContent} modules={modules}/>
+                    <ReactQuill value={blog?.content} onChange={setContent} modules={modules}/>
                     <div className="flex flex-col gap-2 w-full">
                         <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="categories">Categories</label>
                         <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="p-2 border bg-white border-gray-300 rounded-md" id="categories">
@@ -145,7 +145,8 @@ const CreateBlog = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default withAuth(CreateBlog);
+
+export default withAuth(EditBlog);

@@ -1,9 +1,13 @@
 "use client"
-import { getBlogDetail } from "@/services/blogServices";
+import { deleteBlog, getBlogDetail } from "@/services/blogServices";
 import Link from "next/link"
 import { notFound, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Loading";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useRouter } from "next/navigation";
+import EditDeleteButton from "@/components/EditDeleteButton";
 
 const SingleBlog = () => {
 
@@ -11,6 +15,7 @@ const SingleBlog = () => {
     const slug = pathname.split("/").pop();
     const [blog, setBlog] = useState<any>();
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchSingleBlog = async () => {
@@ -24,7 +29,22 @@ const SingleBlog = () => {
             }
         }
         fetchSingleBlog();
-    })
+    }, []);
+
+    const handleDelete = async () => {
+        const confirmation = confirm("Are you sure want to delete this blog?");
+        if(!confirmation) return;
+        try {
+            await deleteBlog(blog?.slug);
+            alert("Blog deleted successfully.");
+            router.push("/blogs");
+            // setTimeout(() => {
+            //     notFound(); // Assuming this redirects the user
+            // }, 100); // Adding a small delay
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     if (loading) {
         return <Loading />
@@ -32,15 +52,15 @@ const SingleBlog = () => {
   return (
     <div className="p-10 flex flex-col gap-10 justify-center px-7 lg:px-60">
         {/* Container */}
+        <EditDeleteButton slug={blog?.slug} />
         <div className="flex divide-y flex-col">
             <h1 className="text-4xl text-gray-800 dark:text-gray-50 font-bold mb-5">{blog?.title}</h1>
-            <p className="text-sm dark:text-gray-400 text-gray-700 py-3">Published in <span className="text-gray-800 dark:text-gray-100">JavaScript </span> · 4 min read · Sep 30, 2024</p>
+            <p className="text-sm dark:text-gray-400 text-gray-700 py-3">Published in <span className="text-gray-800 font-semibold dark:text-gray-100">Self Help </span> · 6 min read · Oct 21, 2024</p>
             <p></p>
         </div>
         {/* Post's body */}
         <div>
-            <h3 className="text-2xl text-gray-800 dark:text-gray-50 font-semibold ">Introduction</h3>
-            <p className="text-lg lg:tracking-wide dark:text-gray-50 text-gray-600 lg:leading-8">{blog?.content}</p>
+            <p className="text-lg lg:tracking-wide text-gray-600 lg:leading-8 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog?.content }} />
         </div>
         <div>
             <p className="text-md text-gray-700 dark:text-gray-50">Mau berlangganan newsletter? <a href="" className="underline">klik disini</a></p>
