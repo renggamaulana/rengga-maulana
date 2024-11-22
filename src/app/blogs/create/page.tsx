@@ -8,17 +8,20 @@ import { createBlog } from "../../../services/blogServices";
 import { withAuth } from "../../../components/WithAuth";
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
+// import { serverTimestamp } from "firebase/firestore";
+import hljs from "highlight.js"; // Import highlight.js
+import "highlight.js/styles/github.css"; // Choose a highlight.js theme
+
+hljs.configure({ languages: ["javascript", "python", "java", "html"] }); 
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const CreateBlog = () => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
     const [content, setContent] = useState("");
     const [excerpt, setExcerpt] = useState("");
-    // const initialCategoryId = categories.length > 0 ? categories[0].id : 0;
     const [categoryId, setCategoryId] = useState(0);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -33,7 +36,7 @@ const CreateBlog = () => {
             slug: slug,
             content: content,
             excerpt: generatedExcerpt,
-            category_id: Number(categoryId)
+            // created_at: serverTimestamp()
         };
 
         try {
@@ -130,7 +133,7 @@ const CreateBlog = () => {
                         </textarea>
                     </div> */}
                     {/* Content */} 
-                    <ReactQuill value={content} onChange={setContent} modules={modules}/>
+                    <ReactQuill value={content} onChange={setContent} modules={modules} className="bg-white"/>
                     <div className="flex flex-col gap-2 w-full">
                         <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="categories">Categories</label>
                         <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="p-2 border bg-white border-gray-300 rounded-md" id="categories">

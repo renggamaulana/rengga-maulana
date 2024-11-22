@@ -4,9 +4,9 @@ import Link from "next/link"
 import { useEffect, useState } from "react";
 import { getBlogs } from "../../services/blogServices"
 import { getCategories } from "../../services/categoryServices"
-import { HiPencilAlt } from "react-icons/hi";
 import Loading from "@/components/Loading";
 import AuthButton from "@/components/AuthButton";
+
 
 interface Categories {
   id: number;
@@ -75,7 +75,9 @@ const Blogs =  () => {
                     {blogs.map((blog:any) => {
                         return(
                             <div key={blog.id}>
-                                <h1 className="text-xl text-gray-800 dark:text-gray-50 font-semibold">{blog.title}</h1>
+                                <Link href={`blogs/${blog.slug}`}>
+                                  <h1 className="text-xl text-gray-800 dark:text-gray-50 font-semibold">{blog.title}</h1>
+                                </Link>
                                 <p className="text-sm font text-gray-600 dark:text-gray-50">{blog.created_at}</p>
                                 <p className="mt-2 text-md tracking-wide text-gray-800 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog.excerpt }} />
                                 <Link href={`blogs/${blog.slug}`}>

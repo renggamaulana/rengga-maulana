@@ -37,7 +37,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     <div className={darkMode ? 'dark' : ''}>
       {/* Pass toggleTheme and darkMode to Navbar */}
       <Navbar toggleTheme={toggleTheme} darkMode={darkMode} />
-      <main className="dark:bg-gray-900 min-h-screen">{children}</main>
+      <main className="dark:bg-black min-h-screen">{children}</main>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
   }, []);
 
   return (
-        <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-gray-900  items-center xl:max-w-7xl xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
+        <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-black  items-center xl:max-w-full xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
           <h1 className="font-bold text-xl dark:text-gray-50 text-gray-800">
             <Link href="/">RENGGAMAULANA</Link>
           </h1>
@@ -52,7 +52,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
                     <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <a href="./resume-rengga-maulana.pdf" download className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-cyan-500 to-teal-500 p-2 rounded-md">Resume</a>
+                  <a href="https://drive.google.com/file/d/1z6sRK6FINBrgFweDCcYLMN-pLB7jnR79/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-cyan-500 to-teal-500 p-2 rounded-md">Resume</a>
                 </li>
                 <li>
                   <button
