@@ -13,6 +13,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundSize: {
+        'custom': '100% 50%',
+      },
     },
   },
   plugins: [],

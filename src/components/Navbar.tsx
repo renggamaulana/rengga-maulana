@@ -28,9 +28,9 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
   }, []);
 
   return (
-        <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-black  items-center xl:max-w-full xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
-          <h1 className="font-bold text-xl dark:text-gray-50 text-gray-800">
-            <Link href="/">RENGGAMAULANA</Link>
+        <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-neutral-900 dark:text-gray-800  items-center xl:max-w-full xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
+          <h1 className="font-bold text-xl dark:text-orange-400 text-gray-800">
+            <Link href="/">&lt;/&gt;</Link>
           </h1>
           {/* Hamburger Menu Toggle Button */}
           <button className="lg:hidden block text-gray-800 dark:text-white focus:outline-none"  onClick={() => setOpen(!open)}>
@@ -44,15 +44,15 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
           {/* <FiMenu className="lg:hidden dark:text-white block h-6 w-6 cursor-pointer" onClick={() => setOpen(!open)} /> */}
           <nav className={`${open ? "block" : "hidden"} lg:flex lg:items-center lg:w-auto w-full lg:pt-0 pt-3`}>
             <ul className="text-base gap-5 text-gray-600 flex flex-col lg:items-center lg:flex-row lg:justify-between">
-                <li className="hover:text-cyan-500 dark:hover:text-cyan-500 dark:text-gray-50 font-semibold">
+                <li className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
                     <Link href="/">Profile</Link>
 
                 </li>
-                <li className="hover:text-cyan-500 dark:hover:text-cyan-500 dark:text-gray-50 font-semibold">
+                <li className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
                     <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <a href="https://drive.google.com/file/d/1z6sRK6FINBrgFweDCcYLMN-pLB7jnR79/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-cyan-500 to-teal-500 p-2 rounded-md">Resume</a>
+                  <a href="https://drive.google.com/file/d/1z6sRK6FINBrgFweDCcYLMN-pLB7jnR79/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
                 </li>
                 <li>
                   <button
