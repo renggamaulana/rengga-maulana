@@ -133,7 +133,7 @@ export default function Homepage() {
                     <a href="#profile" className="text-5xl text-orange-500 font-semibold font-bangers tracking-widest uppercase">Rengga Maulana</a>
                     <p className="pt-2 dark:text-gray-50 text-gray-800 text-2xl font-semibold font-bangers tracking-widest">Fullstack Developer</p>
                 </div>
-                <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold text-orange-500 italic">beautifully</span> designed and <span className="font-bold text-orange-500 italic">effectively</span> functional websites.</p>
+                <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold text-orange-500 italic underline">beautifully</span> designed and <span className="font-bold text-orange-500 italic underline">effectively</span> functional websites.</p>
                 <div className="flex justify-center gap-10">
                     <a target="_blank" href="https://github.com/renggamaulana">
                     <svg className="w-6 h-6 md:w-8 md:h-8 hover:dark:text-orange-500 hover:text-orange-500 transition-transform duration-300 ease-in-out transform hover:translate-y-[-10px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -171,8 +171,11 @@ export default function Homepage() {
             </div>
             </section>
             <section ref={(el) => {sectionsRef.current[1] = el}} className="hidden-section pt-5" id="projects">
-                <h1 className="text-3xl text-gray-800 dark:text-gray-300 font-semibold mb-5 font-bangers tracking-wider uppercase">Projects</h1>
-                <div className="grid grid-cols-1 gap-3 md:gap-10 md:grid-cols-2">
+                <div className="relative inline-block">
+                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
+                    <h1 className="font-bold text-neutral-100 text-3xl">Projects</h1>
+                </div>
+                <div className="grid grid-cols-1 mt-10 gap-3 md:gap-10 md:grid-cols-2">
                     {projects.map((project) => {
                         return (
                             <div className="shadow-lg dark:bg-neutral-900 dark:md:border dark:md:bg-neutral-900 dark:md:border-none rounded px-3 py-5 md:px-5 md:py-8">
@@ -202,7 +205,10 @@ export default function Homepage() {
             </section>
             <section ref={(el) => {sectionsRef.current[2] = el}} className="hidden-section min-h-screen pt-5" id="stack">
                 <div className="mb-5">
-                <h1 className="text-3xl text-gray-800 dark:text-gray-300 font-semibold font-bangers tracking-wider uppercase">STACK</h1>
+                <div className="relative inline-block">
+                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
+                    <h1 className="font-bold text-neutral-100 text-3xl">Stack</h1>
+                </div>
                 <p className="text-xl text-neutral-400 tracking-wide">Tools and technologies I use.</p>
                 </div>
 
