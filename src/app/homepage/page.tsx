@@ -125,7 +125,7 @@ export default function Homepage() {
                 </ul>
             </nav>
             <section ref={(el) => {sectionsRef.current[0] = el}} className="hidden-section md:min-h-screen flex justify-center items-center" id="profile">
-            <div className="p-10 md:p-20 flex flex-col gap-10">
+            <div className="p-5 md:p-20 flex flex-col gap-10">
                 <div className="flex justify-center">
                     <Image src={fox} alt='' className="w-32 md:w-48 mr-3"/>
                 </div>

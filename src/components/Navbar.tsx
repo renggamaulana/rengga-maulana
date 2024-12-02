@@ -29,7 +29,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
 
   return (
         <header className="flex py-2 sticky top-0 z-10 justify-between bg-gray-50 shadow dark:bg-neutral-900 dark:text-gray-800  items-center xl:max-w-full xl:mx-auto max-w-full px-5 lg:px-10 flex-wrap">
-          <h1 className="font-bold text-xl dark:text-orange-400 text-gray-800">
+          <h1 className="font-bold text-xl text-orange-400">
             <Link href="/">&lt;/&gt;</Link>
           </h1>
           {/* Hamburger Menu Toggle Button */}
@@ -52,7 +52,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
                     <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <a href="https://drive.google.com/file/d/1z6sRK6FINBrgFweDCcYLMN-pLB7jnR79/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
+                  <a href="https://drive.google.com/file/d/1s4DmUFtdAhnmRCAIPNiyLAg7_c_kcLBM/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
                 </li>
                 <li>
                   <button
