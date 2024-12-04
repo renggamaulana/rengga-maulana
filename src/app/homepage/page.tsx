@@ -91,7 +91,7 @@ export default function Homepage() {
 
     return(
         <div className="flex flex-col gap-8 px-5">
-            <nav className="fixed bottom-5 z-10 left-1/2 transform -translate-x-1/2 px-8 py-2 rounded-full bg-gray-50 dark:bg-black shadow-lg">
+            {/* <nav className="fixed bottom-5 z-10 left-1/2 transform -translate-x-1/2 px-8 py-2 rounded-full bg-gray-50 dark:bg-black shadow-lg">
                 <ul className="flex gap-10 text-gray-800 dark:text-white">
                     <li>
                         <a className="hover:text-orange-400" href="#profile">
@@ -123,7 +123,7 @@ export default function Homepage() {
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> */}
             <section ref={(el) => {sectionsRef.current[0] = el}} className="hidden-section md:min-h-screen flex justify-center items-center" id="profile">
             <div className="p-5 md:p-20 flex flex-col gap-10">
                 <div className="flex justify-center">
@@ -306,15 +306,6 @@ export default function Homepage() {
 
                 </div>
             </section>
-            {/* <section ref={(el) => {sectionsRef.current[3] = el}} className="hidden-section pt-5" id="about">
-                <div className="mb-3">
-                <h1 className="text-3xl text-gray-800 dark:text-gray-300 font-bangers font-semibold tracking-wider uppercase bg-custom">About</h1>
-                <p className="text-xl text-neutral-400">I’m Rengga Maulana — an Indonesian Software Engineer currently based in Bogor, West Java.</p>
-                </div>
-                <div>
-                    <p className="text-neutral-400">With over 3 years of experience, I specialize in building and managing responsive websites using HTML, CSS, JavaScript, and PHP, along with frameworks like NextJS(React), VueJS, Angular, Ionic, Laravel & Nodejs. I'm passionate about technology and continuously learning, with strong analytical skills and attention to detail.</p>
-                </div>
-            </section> */}
             <footer ref={(el) => {sectionsRef.current[4] = el}} className="hidden-section">
                 <p className="py-5 text-gray-500 text-center">© 2024 Rengga Maulana </p>
             </footer>
