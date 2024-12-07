@@ -172,7 +172,7 @@ export default function Homepage() {
             </section>
             <section ref={(el) => {sectionsRef.current[1] = el}} className="hidden-section pt-5" id="projects">
                 <div className="relative inline-block">
-                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
+                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 "></span>
                     <h1 className="font-bold text-neutral-100 text-3xl">Projects</h1>
                 </div>
                 <div className="grid grid-cols-1 mt-10 gap-3 md:gap-10 md:grid-cols-2">
