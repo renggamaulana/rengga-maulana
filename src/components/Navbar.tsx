@@ -45,13 +45,13 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
             </h1>
             {/* Hamburger Menu Toggle Button */}
             <button onClick={() => setOpen(!open)} className="lg:hidden flex gap-1 flex-col">
-                <div className={`bg-neutral-600 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm 
+                <div className={`bg-neutral-600 dark:bg-white block transition-all duration-500 ease-out h-0.5 w-6 rounded-sm 
                     ${open ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></div>
-                <div className={`bg-neutral-600 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-5 rounded-sm
+                <div className={`bg-neutral-600 dark:bg-white block transition-all duration-500 ease-out h-0.5 w-5 rounded-sm
                     ${open ?
                 'opacity-0' : 'opacity-100'
                 }`}></div>
-                <div className={`bg-neutral-600 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-4 rounded-sm
+                <div className={`bg-neutral-600 dark:bg-white block transition-all duration-500 ease-out h-0.5 w-4 rounded-sm
                     ${open ?
                 '-rotate-45 -translate-y-2 w-6' : 'translate-y-0.5'
                 }`}></div>
@@ -64,7 +64,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
                   className="fixed inset-0 z-9"
                 ></div>
               )}
-              <div className={`absolute md:static top-8 right-5 ${open? 'opacity-100' : 'opacity-0'} shadow rounded-md md:opacity-100 duration-500 ease-in-out md:bg-none ${darkMode ? 'bg-gradient-to-r from-neutral-900 to-neutral-950' : 'bg-gray-50'} w-[60vw] md:w-auto`}>
+              <div className={`absolute md:static top-8 right-5 ${open? 'opacity-100' : 'opacity-0'} shadow md:shadow-none rounded md:rounded-none md:opacity-100 duration-500 ease-in-out md:bg-none ${darkMode ? 'bg-gradient-to-r from-neutral-900 to-neutral-950' : 'bg-gray-50'} w-[60vw] md:w-auto`}>
               <ul className="text-base gap-5 text-gray-600 flex md:flex flex-col p-5 md:p-0 md:items-center md:flex-row md:justify-between">
                   {menus.map((menu) => (
                     <li onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">

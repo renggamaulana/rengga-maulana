@@ -64,28 +64,28 @@ export default function Homepage() {
             description: 'Atmosight delivers real-time weather forecasts for cities worldwide with a clean, easy-to-use interface.',
             stacks: ['Next.js', 'Tailwind', 'OpenWeather API'],
             image: atmosight,
-            link: 'https://daphone.vercel.app/'
+            link: 'https://atmosight.vercel.app/'
         },
         {
             name: 'Everyday Quotes',
             description: 'Everyday Quotes is a random quotes generator to find quotes from famous people on earth.',
             stacks: ['HTML', 'CSS', 'JavaScript'],
             image: everydayQuotes,
-            link: 'https://daphone.vercel.app/'
+            link: 'https://everyday-quotes.vercel.app/'
         },
         {
             name: 'Transaction Restful API Service',
             description: 'In this project, I designed a service pattern for transactions, including sending and withdrawing funds, integrated with a user management system.',
             stacks: ['Fastify', 'Prisma ORM', 'JWT Auth'],
             image: restfulApi,
-            link: 'https://daphone.vercel.app/'
+            link: 'https://github.com/renggamaulana/concreteAI-be-assignment'
         },
         {
             name: 'Suzu Nihongo',
             description: 'Suzu Nihongo stands for 少しずつ日本語(Sukoshi Zutsu Nihongo) where everyone can learn Japanese bit by bit.',
             stacks: ['Next.js', 'TypeScript', 'API(Laravel)'],
             image: suzuNihongo,
-            link: 'https://daphone.vercel.app/'
+            link: 'https://suzu-nihongo.vercel.app/'
         },
     ]
 
@@ -130,7 +130,10 @@ export default function Homepage() {
                     <Image src={fox} alt='' className="w-32 md:w-48 mr-3"/>
                 </div>
                 <div className="text-center">
-                    <a href="#profile" className="text-5xl text-orange-500 font-semibold font-bangers tracking-widest uppercase">Rengga Maulana</a>
+                    <a href="#profile" className="text-5xl text-orange-500 font-semibold font-bangers tracking-widest uppercase">
+                        {/* <span className="shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ff8000,0_0_15px_#ff8000,0_0_30px_#ff8000]">Rengga Maulana</span> */}
+                        Rengga Maulana
+                    </a>
                     <p className="pt-2 dark:text-gray-50 text-gray-800 text-2xl font-semibold font-bangers tracking-widest">Fullstack Developer</p>
                 </div>
                 <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold text-orange-500 italic underline">beautifully</span> designed and <span className="font-bold text-orange-500 italic underline">effectively</span> functional websites.</p>
@@ -172,7 +175,7 @@ export default function Homepage() {
             </section>
             <section ref={(el) => {sectionsRef.current[1] = el}} className="hidden-section pt-5" id="projects">
                 <div className="relative inline-block">
-                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 "></span>
+                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
                     <h1 className="font-bold text-neutral-100 text-3xl">Projects</h1>
                 </div>
                 <div className="grid grid-cols-1 mt-10 gap-3 md:gap-10 md:grid-cols-2">
