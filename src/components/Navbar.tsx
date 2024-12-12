@@ -9,15 +9,17 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import LogoutButton from './LogoutButton';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
+import { useTheme } from "@/context/ThemeContext";
+export default function Navbar() {
 
-export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void, darkMode: boolean,}) {
+  const { theme, toggleTheme } = useTheme();
+  const [darkMode, setDarkMode] = useState(false);
 
-  let name;
-    const [ open, setOpen ] = useState( false )
-
-    // const router = useRouter();
+  const [ open, setOpen ] = useState( false )
 
   useEffect(() => {
+    theme === "dark" ? setDarkMode(true) : setDarkMode(false);
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         // router.push("/login"); // Arahkan pengguna ke halaman login jika belum terautentikasi
@@ -38,7 +40,7 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
     }
   ]
   return (
-        <header className={`sticky z-10 top-0 ${darkMode ? 'bg-gradient-to-r from-neutral-900 to-neutral-950' : 'bg-gray-50'}`}>
+        <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
           <nav className="flex justify-between items-center p-5 lg:w-auto w-full">
             <h1 className="font-bold text-xl text-orange-400">
               <Link href="/">&lt;/&gt;</Link>
@@ -64,33 +66,33 @@ export default function Navbar({toggleTheme, darkMode}: {toggleTheme: () => void
                   className="fixed inset-0 z-9"
                 ></div>
               )}
-              <div className={`absolute md:static top-8 right-5 ${open? 'opacity-100' : 'opacity-0'} shadow md:shadow-none rounded md:rounded-none md:opacity-100 duration-500 ease-in-out md:bg-none ${darkMode ? 'bg-gradient-to-r from-neutral-900 to-neutral-950' : 'bg-gray-50'} w-[60vw] md:w-auto`}>
-              <ul className="text-base gap-5 text-gray-600 flex md:flex flex-col p-5 md:p-0 md:items-center md:flex-row md:justify-between">
-                  {menus.map((menu) => (
-                    <li onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
-                        <Link href={menu.url}>{menu.name}</Link>
+              <div className={`absolute md:static top-8 right-5 ${open? 'opacity-100 duration-500 bg-white dark:bg-black' : 'opacity-0'} shadow md:shadow-none rounded md:rounded-none md:opacity-100 md:bg-none w-[60vw] md:w-auto`}>
+                <ul className="text-base gap-5 text-gray-600 flex md:flex flex-col p-5 md:p-0 md:items-center md:flex-row md:justify-between">
+                    {menus.map((menu) => (
+                      <li onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
+                          <Link href={menu.url}>{menu.name}</Link>
+                      </li>
+                    ))}
+                    <li>
+                      <a href="https://drive.google.com/file/d/1qI26RbOKlAvKZRE6vVcprwtiB2b0570B/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
                     </li>
-                  ))}
-                  <li>
-                    <a href="https://drive.google.com/file/d/1s4DmUFtdAhnmRCAIPNiyLAg7_c_kcLBM/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
-                  </li>
-                  <li>
-                    <button
-                        onClick={toggleTheme}
-                        className="rounded-lg z-10 p-2 bg-gray-100 bg-opacity-80 backdrop-blur-md text-black dark:bg-gray-800 dark:bg-opacity-80 dark:text-white flex items-center transition-all duration-300 ease-in-out"
-                      >
-                        {darkMode ? (
-                          <Image src={lightIcon} alt="Light Mode" className="w-5 h-5" />
-                        ) : (
-                          <Image src={darkIcon} alt="Dark Mode" className="w-5 h-5" />
-                        )}
-                    </button>
-                  </li>
-                  <li>
-                    <LogoutButton />
-                  </li>
-              </ul>
-            </div>
+                    <li>
+                      <button
+                          onClick={toggleTheme}
+                          className="rounded-lg z-10 p-2 bg-gray-100 bg-opacity-80 backdrop-blur-md text-black dark:bg-gray-800 dark:bg-opacity-80 dark:text-white flex items-center transition-all duration-300 ease-in-out"
+                        >
+                          {theme === "light"  ? (
+                            <Image src={darkIcon} alt="Dark Mode" className="w-5 h-5" />
+                          ) : (
+                            <Image src={lightIcon} alt="Light Mode" className="w-5 h-5" />
+                          )}
+                      </button>
+                    </li>
+                    <li>
+                      <LogoutButton />
+                    </li>
+                </ul>
+              </div>
             </div>
             
          </nav>

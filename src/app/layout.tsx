@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeProvider from "../components/ThemeProvider";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { Playfair_Display, Inter, League_Spartan, Fredericka_the_Great } from 'next/font/google'
 import { usePathname } from "next/navigation";
+import Navbar from '../components/Navbar';
+import ThemeUpdater from "@/components/ThemeUpdater";
 
 const inter = Inter({ subsets: ['latin'] });
 const playfairDisplay = Playfair_Display({ subsets: ['latin'] });
@@ -25,6 +27,8 @@ export default function RootLayout({
       >
        {/* Wrap the content in the client-side ThemeProvider */}
        <ThemeProvider>
+          <ThemeUpdater/>
+          <Navbar/>
           {children}
         </ThemeProvider>
       </body>

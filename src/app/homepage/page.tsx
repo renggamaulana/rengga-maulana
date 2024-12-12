@@ -92,39 +92,6 @@ export default function Homepage() {
 
     return(
         <div className="flex flex-col gap-8 px-5">
-            {/* <nav className="fixed bottom-5 z-10 left-1/2 transform -translate-x-1/2 px-8 py-2 rounded-full bg-gray-50 dark:bg-black shadow-lg">
-                <ul className="flex gap-10 text-gray-800 dark:text-white">
-                    <li>
-                        <a className="hover:text-orange-400" href="#profile">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
-                            <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-                            <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
-                        </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a className="hover:text-orange-400" href="#projects">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
-                        </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a className="hover:text-orange-400" href="#stack">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
-                        </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a className="hover:text-orange-400" href="#about">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-                        </a>
-                    </li>
-                </ul>
-            </nav> */}
             <section ref={(el) => {sectionsRef.current[0] = el}} className="hidden-section md:min-h-screen flex justify-center items-center" id="profile">
             <div className="p-5 md:p-20 flex flex-col gap-10">
                 <div className="flex justify-center">
@@ -135,9 +102,9 @@ export default function Homepage() {
                         {/* <span className="shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ff8000,0_0_15px_#ff8000,0_0_30px_#ff8000]">Rengga Maulana</span> */}
                         Rengga Maulana
                     </a>
-                    <p className="pt-2 dark:text-gray-50 text-gray-800 text-2xl md:text-2xl font-semibold font-bangers tracking-widest">
+                    <p className="pt-2 dark:text-gray-50 text-gray-800 text-lg md:text-2xl font-semibold font-bangers tracking-widest">
                         <TypedText
-                            strings={["Web Developer", "Keyboard Warrior 💻", "Freelance Fullstack Developer", "Bug Breeder (unintentionally)", "Proffesional Sleeper 😴"]}
+                            strings={["Web Developer", "Keyboard Warrior 💻", "Bug Breeder (unintentionally)", "Proffesional Sleeper 😴"]}
                             typeSpeed={50}
                             backSpeed={40}
                             loop={true}
@@ -184,12 +151,12 @@ export default function Homepage() {
             <section ref={(el) => {sectionsRef.current[1] = el}} className="hidden-section pt-5" id="projects">
                 <div className="relative inline-block">
                     <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
-                    <h1 className="font-bold text-neutral-100 text-3xl">Projects</h1>
+                    <h1 className="font-bold text-neutral-700 dark:text-neutral-100 text-3xl">Projects</h1>
                 </div>
                 <div className="grid grid-cols-1 mt-10 gap-3 md:gap-10 md:grid-cols-2">
                     {projects.map((project) => {
                         return (
-                            <div className="dark:bg-neutral-900 dark:md:border dark:md:bg-neutral-900 dark:md:border-none rounded px-3 py-5 md:px-5 md:py-8">
+                            <div className="dark:bg-neutral-900 bg-white shadow-lg dark:md:border dark:md:bg-neutral-900 dark:md:border-none rounded px-3 py-5 md:px-5 md:py-8">
                             <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                                 <Image src={project.image} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
                                 <a href="https://daphone.my.id" className="hover:text-orange-400 group">
@@ -218,7 +185,7 @@ export default function Homepage() {
                 <div className="mb-5">
                 <div className="relative inline-block">
                     <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
-                    <h1 className="font-bold text-neutral-100 text-3xl">Stack</h1>
+                    <h1 className="font-bold text-neutral-700 dark:text-neutral-100 text-3xl">Stack</h1>
                 </div>
                 <p className="text-xl text-neutral-400 tracking-wide">Tools and technologies I use.</p>
                 </div>

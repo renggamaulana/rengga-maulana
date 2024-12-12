@@ -8,7 +8,7 @@ html {
   scroll-padding-top: 80px;
 }
 
-/* :root {
+:root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -30,7 +30,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-} */
+}
+html[data-theme='light'] {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+html[data-theme='dark'] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+}
 
 
 .hidden-section {
@@ -54,21 +63,10 @@ body {
 
 
 /* Default styles for light mode */
-:root {
-  --bg-color: #f9fafb; /* Equivalent to bg-gray-50 */
-  --text-color: #1f2937; /* Equivalent to text-gray-800 */
-}
-
-/* If the user's system is in dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #111827; /* Equivalent to bg-gray-900 */
-    --text-color: #f9fafb; /* Equivalent to text-gray-50 */
-  }
-}
 
 /* Apply these variables to your body or main tag */
 body, main {
-  background-color: #f9fafb;
+  background-color: var(--bg-color);
   color: var(--text-color);
+  /* transition: background-color 0.3s, color 0.3s; */
 }
