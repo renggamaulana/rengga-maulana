@@ -11,6 +11,7 @@ import hljs from "highlight.js"; // Import highlight.js
 import "highlight.js/styles/github.css";
 import { serverTimestamp } from "firebase/firestore";
 import firebase from "firebase/compat/app";
+import Image from "next/image";
 
 hljs.configure({ languages: ["javascript", "python", "java", "html"] }); 
 
@@ -164,9 +165,9 @@ const CreateBlog = () => {
                     <div>
                         <label>Upload Image</label>
                         <input type="file" accept="image/*" onChange={handleImage} required />
-                        {image && <img src={URL.createObjectURL(image)} alt="Preview" width="200"/>}
+                        {image && <Image src={URL.createObjectURL(image)} alt="Preview" width={200} height={200} className="mt-3"/>}
                     </div>
-                    <button onClick={onSubmit} className="bg-cyan-500 hover:bg-cyan-600 text-white p-2 rounded-md font-semibold">
+                    <button onClick={onSubmit} className="bg-orange-500 hover:bg-orange-600 text-white p-2 rounded-md font-semibold">
                         Save
                     </button>
                 </div>

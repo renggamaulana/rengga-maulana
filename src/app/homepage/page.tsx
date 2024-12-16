@@ -202,7 +202,7 @@ export default function Homepage() {
                         <div>
                         <div className="flex items-center gap-2">
                             <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Github</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">Featured</span>
+                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">Featuorange</span>
                         </div>
                         <p className="text-neutral-500 text-lg dark:text-neutral-400">Simple repository management.</p>
                         </div>

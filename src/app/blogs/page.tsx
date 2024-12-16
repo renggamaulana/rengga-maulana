@@ -61,7 +61,7 @@ const Blogs =  () => {
     return(
         <div className="px-5 lg:px-20 py-10">
           {/* Categories */}
-          <div className="p-10 dark:bg-neutral-900 bg-white border border-neutral-700 dark:border-none rounded-lg">
+          <div className="p-10 dark:bg-neutral-900 bg-white border border-neutral-200 shadow dark:border-none rounded-lg">
             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
             <div className="flex flex-wrap gap-3 mt-5">
               {/* dangerouslySetInnerHTML={{ __html: blog.excerpt }} */}
@@ -82,7 +82,7 @@ const Blogs =  () => {
           {/* Main */}
           <div className="grid mt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {blogs.map((blog) => (
-              <div key={blog.id} className="p-10 rounded-lg shadow-lg bg-white dark:bg-neutral-900">
+              <div key={blog.id} className="p-5 rounded-lg shadow-lg bg-white dark:bg-neutral-900">
                 <div className="w-full h-52 mb-5">
                   <Image src={blog.image_url} alt={blog.title} className="object-cover w-full h-full" width={1000} height={1000} />
                 </div>
