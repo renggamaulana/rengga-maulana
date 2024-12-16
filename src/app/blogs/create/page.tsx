@@ -41,20 +41,19 @@ const CreateBlog = () => {
         if(image) {
             const formData = new FormData();
             formData.append("image", image);
+            console.log(formData);
 
             const response = await fetch("/api/upload", {
                 method: "POST",
-                body: JSON.stringify({ file: URL.createObjectURL(image) }),
-                headers: {
-                    'Content-type': 'application/json'
-                }
+                body: formData
             });
             const data = await response.json();
-
+            console.log("data:", data)
             if(response.ok) {
                 uploadedImageUrl = data.url;
             } else {
-                console.error('Error uploading image:', data.error);
+                console.error('Error uploading image:', `${data.error}: ${data.error.details}`);
+                return;
             }
         };
 

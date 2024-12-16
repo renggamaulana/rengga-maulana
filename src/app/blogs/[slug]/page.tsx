@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import EditDeleteButton from "@/components/EditDeleteButton";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
+import Image from "next/image";
 
 const SingleBlog = () => {
 
@@ -73,7 +74,7 @@ const SingleBlog = () => {
             <h1 className="text-4xl text-gray-800 dark:text-gray-50 font-bold mb-5">{blog?.title}</h1>
             <p className="text-sm dark:text-gray-400 text-gray-700 py-3">
                 Published in 
-                <span className="text-gray-800 font-semibold dark:text-gray-100">Self Help </span> · 
+                <span className="text-gray-800 font-semibold dark:text-gray-100"> Self Help </span> · 
                 <span>{readingTime}</span> min read · 
                 <span className="text-gray-600 dark:text-gray-50 text-sm italic">{blog.created_at
                       ? new Intl.DateTimeFormat("en-US", {
@@ -86,10 +87,14 @@ const SingleBlog = () => {
             </p>
             <p></p>
         </div>
-        {/* Post's body */}
-        <div>
-            <p className="text-lg lg:tracking-wide text-gray-600 lg:leading-8 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog?.content }} />
+        <div className="w-full mb-5 flex justify-center">
+            <Image src={blog.image_url} alt={blog.title}  width={1000} height={1000} />
         </div>
+        {/* Post's body */}
+        <div
+            className="text-lg lg:tracking-wide text-gray-600 lg:leading-8 dark:text-gray-50"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
         <div>
             <p className="text-md text-gray-700 dark:text-gray-50">Mau berlangganan newsletter? <a href="" className="underline">klik disini</a></p>
             <Link href="/blogs" className="text-md text-gray-700 dark:text-gray-50 flex gap-2 mt-5 hover:underline">

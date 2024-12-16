@@ -4,7 +4,7 @@ import cloudinary from '@/lib/cloudinary'; // Pastikan cloudinary diimpor dengan
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const file = formData.get('file') as Blob;
+    const file = formData.get('image') as Blob;
 
     if (!file) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });

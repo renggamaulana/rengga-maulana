@@ -8,6 +8,7 @@ import Loading from "@/components/Loading";
 import AuthButton from "@/components/AuthButton";
 import { Blog } from "@/types/blog";
 import Dot from "@/components/Dot";
+import Image from "next/image";
 
 interface Categories {
   id: number;
@@ -60,7 +61,7 @@ const Blogs =  () => {
     return(
         <div className="px-5 lg:px-20 py-10">
           {/* Categories */}
-          <div className="p-10 bg-neutral-900 rounded-lg">
+          <div className="p-10 dark:bg-neutral-900 bg-white border border-neutral-700 dark:border-none rounded-lg">
             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
             <div className="flex flex-wrap gap-3 mt-5">
               {/* dangerouslySetInnerHTML={{ __html: blog.excerpt }} */}
@@ -82,6 +83,9 @@ const Blogs =  () => {
           <div className="grid mt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {blogs.map((blog) => (
               <div key={blog.id} className="p-10 rounded-lg shadow-lg bg-white dark:bg-neutral-900">
+                <div className="w-full h-52 mb-5">
+                  <Image src={blog.image_url} alt={blog.title} className="object-cover w-full h-full" width={1000} height={1000} />
+                </div>
                 <h1 className="text-xl font-bold text-gray-800 dark:text-gray-50">{blog.title}</h1>
                 <p className="mt-2 text-gray-600 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
                 <div className="flex items-center gap-2 mt-5">  
