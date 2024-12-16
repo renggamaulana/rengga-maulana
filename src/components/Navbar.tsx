@@ -66,15 +66,15 @@ export default function Navbar() {
                   className="fixed inset-0 z-9"
                 ></div>
               )}
-              <div className={`absolute md:static top-8 right-3 ${open? 'opacity-100 duration-500 bg-white dark:bg-gradient-to-tl from-neutral-900 to-neutral-950' : 'opacity-0'} shadow md:shadow-none rounded md:rounded-none md:opacity-100 md:bg-none w-[50vw] md:w-auto`}>
-                <ul className="text-base gap-5 text-gray-600 flex md:flex flex-col p-5 md:p-0 md:items-center md:flex-row md:justify-between">
+              <div className={`absolute lg:static top-8 md:top-10 right-3 ${open? 'opacity-100 duration-500 bg-white dark:bg-gradient-to-tl from-neutral-900 to-neutral-950 shadow dark:shadow-none' : 'opacity-0'} rounded md:rounded-none md:opacity-100 w-[50vw] md:w-auto`}>
+                <ul className={`text-base gap-5 text-gray-600 p-5 flex lg:items-center lg:flex lg:flex-row ${open? 'flex flex-col md:w-[32vw] md:py-10' : 'hidden'} md:justify-between`}>
                     {menus.map((menu) => (
                       <li key={menu.name} onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
                           <Link href={menu.url}>{menu.name}</Link>
                       </li>
                     ))}
                     <li>
-                      <a href="https://drive.google.com/file/d/1qI26RbOKlAvKZRE6vVcprwtiB2b0570B/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
+                      <a href="https://drive.google.com/file/d/1zVT4NGTqSQ4KHpIHvXmETal6RbGti9d4/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
                     </li>
                     <li>
                       <button
