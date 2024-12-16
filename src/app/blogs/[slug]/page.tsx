@@ -24,7 +24,12 @@ const SingleBlog = () => {
         const fetchSingleBlog = async () => {
             try {
                 const data = await getBlogDetail(slug!);
-                setBlog(data);
+                const formattedData = {
+                    ...data,
+                    created_at: data?.created_at.toDate(),
+                    updated_at: data?.created_at.toDate(),
+                }
+                setBlog(formattedData);
                 setLoading(false);
                 if (data?.content) {
                     const time = calculateReadingTime(data.content);
@@ -66,7 +71,19 @@ const SingleBlog = () => {
         <EditDeleteButton slug={blog?.slug} />
         <div className="flex divide-y flex-col">
             <h1 className="text-4xl text-gray-800 dark:text-gray-50 font-bold mb-5">{blog?.title}</h1>
-            <p className="text-sm dark:text-gray-400 text-gray-700 py-3">Published in <span className="text-gray-800 font-semibold dark:text-gray-100">Self Help </span> · {readingTime} min read · Oct 21, 2024</p>
+            <p className="text-sm dark:text-gray-400 text-gray-700 py-3">
+                Published in 
+                <span className="text-gray-800 font-semibold dark:text-gray-100">Self Help </span> · 
+                <span>{readingTime}</span> min read · 
+                <span className="text-gray-600 dark:text-gray-50 text-sm italic">{blog.created_at
+                      ? new Intl.DateTimeFormat("en-US", {
+                          month: "short", // Menghasilkan bulan dalam bentuk singkat (e.g., "DEC")
+                          day: "numeric", // Tanggal (e.g., "7")
+                          year: "numeric", // Tahun (e.g., "2024")
+                        }).format(blog.created_at)
+                      : ""}
+                </span>
+            </p>
             <p></p>
         </div>
         {/* Post's body */}
@@ -77,7 +94,7 @@ const SingleBlog = () => {
             <p className="text-md text-gray-700 dark:text-gray-50">Mau berlangganan newsletter? <a href="" className="underline">klik disini</a></p>
             <Link href="/blogs" className="text-md text-gray-700 dark:text-gray-50 flex gap-2 mt-5 hover:underline">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
                 Lihat postingan lainnya
             </Link>

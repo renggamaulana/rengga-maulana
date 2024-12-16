@@ -1,5 +1,4 @@
 "use client"
-// import { getCategories, postBlogs } from "@/lib/api/axios";
 import { getCategories } from "../../../services/categoryServices";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Loading";
@@ -8,9 +7,10 @@ import { createBlog } from "../../../services/blogServices";
 import { withAuth } from "../../../components/WithAuth";
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
-// import { serverTimestamp } from "firebase/firestore";
 import hljs from "highlight.js"; // Import highlight.js
-import "highlight.js/styles/github.css"; // Choose a highlight.js theme
+import "highlight.js/styles/github.css";
+import { serverTimestamp } from "firebase/firestore";
+import firebase from "firebase/compat/app";
 
 hljs.configure({ languages: ["javascript", "python", "java", "html"] }); 
 
@@ -26,9 +26,40 @@ const CreateBlog = () => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const [categories, setCategories] = useState<any>([]);
+    const [image, setImage] = useState(null);
+    const handleImage = (e:any) => {
+        const file = e.target.files[0];
+        if(file) {
+            setImage(file);
+        }
+    }
 
-    const onSubmit = async () => {
-    // Generate excerpt
+    const onSubmit = async (e:any) => {
+        e.preventDefault();
+        let uploadedImageUrl = ""; 
+        // upload image
+        if(image) {
+            const formData = new FormData();
+            formData.append("image", image);
+
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: JSON.stringify({ file: URL.createObjectURL(image) }),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            });
+            const data = await response.json();
+
+            if(response.ok) {
+                uploadedImageUrl = data.url;
+            } else {
+                console.error('Error uploading image:', data.error);
+            }
+        };
+
+
+        // Generate excerpt
         const generatedExcerpt = generateExcerpt(content);
         setExcerpt(generatedExcerpt);
         const data = {
@@ -36,7 +67,7 @@ const CreateBlog = () => {
             slug: slug,
             content: content,
             excerpt: generatedExcerpt,
-            // created_at: serverTimestamp()
+            image_url: uploadedImageUrl,
         };
 
         try {
@@ -112,7 +143,7 @@ const CreateBlog = () => {
                     <div className="flex flex-col gap-2 w-full">
                         <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="title">Title</label>
                         <input
-                            className="p-2 border border-gray-300 rounded-md"
+                            className="p-2 border dark:text-neutral-900 border-gray-300 rounded-md"
                             placeholder="input title"
                             type="text"
                             name="title"
@@ -121,26 +152,20 @@ const CreateBlog = () => {
                             onChange={handleTitleChange}
                         />
                     </div>
-                    {/* <div className="flex flex-col gap-2 w-full">
-                        <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="content">Content</label>
-                        <textarea
-                            placeholder="input content"
-                            className="p-2 border border-gray-300 rounded-md"
-                            name="content"
-                            id="content"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}>
-                        </textarea>
-                    </div> */}
                     {/* Content */} 
-                    <ReactQuill value={content} onChange={setContent} modules={modules} className="bg-white"/>
+                    <ReactQuill value={content} onChange={setContent} modules={modules} className="bg-white dark:text-neutral-900"/>
                     <div className="flex flex-col gap-2 w-full">
                         <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="categories">Categories</label>
-                        <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="p-2 border bg-white border-gray-300 rounded-md" id="categories">
+                        <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="p-2 border dark:text-neutral-900 bg-white border-gray-300 rounded-md" id="categories">
                             {categories.map((category:any) => (
                                 <option  key={category.id} value={category.id}>{category.name}</option>
                             ))}
                         </select>
+                    </div>
+                    <div>
+                        <label>Upload Image</label>
+                        <input type="file" accept="image/*" onChange={handleImage} required />
+                        {image && <img src={URL.createObjectURL(image)} alt="Preview" width="200"/>}
                     </div>
                     <button onClick={onSubmit} className="bg-cyan-500 hover:bg-cyan-600 text-white p-2 rounded-md font-semibold">
                         Save

@@ -40,7 +40,7 @@ const EditDeleteButton = ({ slug }: { slug: string }) => {
     <>
       {user ? ( // Cek hanya apakah ada user yang terautentikasi
         <div className="flex ml-auto gap-3">
-          <MdOutlineModeEdit onClick={handleDelete} className="text-lg text-gray-500 hover:text-green-500 cursor-pointer" />
+          <MdOutlineModeEdit className="text-lg text-gray-500 hover:text-green-500 cursor-pointer" />
           <RiDeleteBin6Line onClick={handleDelete} className="text-lg text-gray-500 hover:text-red-500 cursor-pointer" />
       </div>
       ) : null} {/* Tombol hanya muncul jika ada user yang terautentikasi */}

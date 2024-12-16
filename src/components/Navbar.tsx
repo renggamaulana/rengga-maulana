@@ -41,7 +41,7 @@ export default function Navbar() {
   ]
   return (
         <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
-          <nav className="flex justify-between items-center p-5 lg:w-auto w-full">
+          <nav className="flex justify-between items-center px-5 py-5 lg:w-auto w-full">
             <h1 className="font-bold text-xl text-orange-400">
               <Link href="/">&lt;/&gt;</Link>
             </h1>
@@ -66,10 +66,10 @@ export default function Navbar() {
                   className="fixed inset-0 z-9"
                 ></div>
               )}
-              <div className={`absolute md:static top-8 right-5 ${open? 'opacity-100 duration-500 bg-white dark:bg-black' : 'opacity-0'} shadow md:shadow-none rounded md:rounded-none md:opacity-100 md:bg-none w-[60vw] md:w-auto`}>
+              <div className={`absolute md:static top-8 right-3 ${open? 'opacity-100 duration-500 bg-white dark:bg-gradient-to-tl from-neutral-900 to-neutral-950' : 'opacity-0'} shadow md:shadow-none rounded md:rounded-none md:opacity-100 md:bg-none w-[50vw] md:w-auto`}>
                 <ul className="text-base gap-5 text-gray-600 flex md:flex flex-col p-5 md:p-0 md:items-center md:flex-row md:justify-between">
                     {menus.map((menu) => (
-                      <li onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
+                      <li key={menu.name} onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
                           <Link href={menu.url}>{menu.name}</Link>
                       </li>
                     ))}
@@ -82,13 +82,13 @@ export default function Navbar() {
                           className="rounded-lg z-10 p-2 bg-gray-100 bg-opacity-80 backdrop-blur-md text-black dark:bg-gray-800 dark:bg-opacity-80 dark:text-white flex items-center transition-all duration-300 ease-in-out"
                         >
                           {theme === "light"  ? (
-                            <Image src={darkIcon} alt="Dark Mode" className="w-5 h-5" />
+                            <Image src={darkIcon} alt="dark" className="w-5 h-5" />
                           ) : (
-                            <Image src={lightIcon} alt="Light Mode" className="w-5 h-5" />
+                            <Image src={lightIcon} alt="light" className="w-5 h-5" />
                           )}
                       </button>
                     </li>
-                    <li>
+                    <li className="mr-5">
                       <LogoutButton />
                     </li>
                 </ul>

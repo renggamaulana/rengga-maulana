@@ -45,7 +45,7 @@ export default function Login() {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Username"
                             required
-                            className="px-2 py-1 text-gray-800 dark:text-gray-50 border border-gray-400 rounded-md"
+                            className="px-2 py-1 text-neutral-950 dark:text-white dark:bg-transparent border border-gray-400 rounded-md"
                         />
                     </div>
                     <div className="flex flex-col gap-2 text-gray-800 dark:text-gray-50">
@@ -57,7 +57,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
                             required
-                            className="px-2 py-1 text-gray-800 dark:text-gray-50 border border-gray-400 rounded-md"
+                            className="px-2 py-1 text-neutral-950 dark:text-white dark:bg-transparent border border-gray-400 rounded-md"
                         />
                     </div>
                     <button type="submit" className="bg-gradient-to-br from-orange-400 to-orange-600 text-white px-4 py-2 rounded-lg">Login</button>

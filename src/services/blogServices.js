@@ -1,26 +1,38 @@
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc, query, where } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc, query, where, Timestamp, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import convertTimestampToDate from "@/utils/convertTimestampToDate";
 
 const blogCollectionRef = collection(db, "blogs");
 
 // Create blog
 export const createBlog = async (blogData) => {
+  let blogDataWithTimestamp = {
+    ...blogData,
+    created_at: Timestamp.fromDate(new Date()),
+    updated_at: Timestamp.fromDate(new Date())
+  }
   try {
-    const newBlog = await addDoc(blogCollectionRef, blogData);
+    const newBlog = await addDoc(blogCollectionRef, blogDataWithTimestamp);
     return newBlog;
   } catch (error) {
     throw new Error("Error creating blog: " + error.message);
   }
 };
 
+
 // Read blogs
 export const getBlogs = async () => {
   try {
     const blogSnapshot = await getDocs(blogCollectionRef);
-    const blogList = blogSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const blogList = blogSnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        created_at: data.created_at.toDate(),
+        updated_at: data.updated_at.toDate(),
+      };
+    });
     return blogList;
   } catch (error) {
     throw new Error("Error fetching blogs: " + error.message);

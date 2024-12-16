@@ -6,40 +6,34 @@ import { getBlogs } from "../../services/blogServices"
 import { getCategories } from "../../services/categoryServices"
 import Loading from "@/components/Loading";
 import AuthButton from "@/components/AuthButton";
-
+import { Blog } from "@/types/blog";
+import Dot from "@/components/Dot";
 
 interface Categories {
   id: number;
   name: string;
-}
-
-interface Blogs {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  category_id: string;
+  color: string
 }
 
 const Blogs =  () => {
     const username:string = "Rengga";
-    const [blogs, setBlogs] = useState<Blogs[]>([]);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
     const [categories, setCategories] = useState<Categories[]>([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
-
       const fetchBlogs = async () => {
         try {
           const data:any = await getBlogs();
-
           setBlogs(data);
-          console.log(data);
+          console.log('data: ',data);
           setLoading(false);
         } catch (err) {
           console.error(err);
+        } finally {
+          setLoading(false);
         }
       }
 
@@ -64,41 +58,53 @@ const Blogs =  () => {
     }
 
     return(
-        <div className="min-h-screen px-5 lg:px-20 py-10 flex lg:flex-nowrap flex-wrap gap-10">
-            <div className="w-full lg:w-2/3">
-                <h1 className="text-2xl text-gray-800 dark:text-gray-50 font-bold">What's New?</h1>
-                {/* blog list */}
-                {blogs.length < 1 ? (
-                    <p>No Data Available</p>
-                ) : (
-                    <div className="flex flex-col gap-10 mt-10">
-                    {blogs.map((blog:any) => {
-                        return(
-                            <div key={blog.id}>
-                                <Link href={`blogs/${blog.slug}`}>
-                                  <h1 className="text-xl text-gray-800 dark:text-gray-50 font-semibold">{blog.title}</h1>
-                                </Link>
-                                <p className="text-sm font text-gray-600 dark:text-gray-50">{blog.created_at}</p>
-                                <p className="mt-2 text-md tracking-wide text-gray-800 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog.excerpt }} />
-                                <Link href={`blogs/${blog.slug}`}>
-                                    <p className="pt-3 underline text-md text-gray-800 dark:text-gray-50">Read more...</p>
-                                </Link>
-                            </div>                        )
-                    })}
-                </div>
-                )}
+        <div className="px-5 lg:px-20 py-10">
+          {/* Categories */}
+          <div className="p-10 bg-neutral-900 rounded-lg">
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
+            <div className="flex flex-wrap gap-3 mt-5">
+              {/* dangerouslySetInnerHTML={{ __html: blog.excerpt }} */}
+              {categories.map((category) => {
+                return (
+                  <Link
+                    href="#"
+                    key={category.id}
+                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-orange-600 rounded-full hover:bg-orange-500 opacity-75 font-semibold text-black self-baseline"
+                  >
+                   <Dot color={category.color} size={8} /> {category.name}
+                  </Link>
+                );
+              })}
             </div>
-            <div className="w-full md:w-1/3 lg:w-1/3 flex flex-col self-baseline gap-5">
-                <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
-                <div className="flex flex-wrap gap-3">
-                    {categories.map((category) => {
-                        return(
-                                <Link href="#" key={category.id} className="rounded-lg px-3 py-1 bg-black dark:bg-white hover:underline opacity-75 font-semibold text-white dark:text-gray-800 self-baseline">#{category.name}</Link>
-                            )
-                        })}
+          </div>
+
+          {/* Main */}
+          <div className="grid mt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {blogs.map((blog) => (
+              <div key={blog.id} className="p-10 rounded-lg shadow-lg bg-white dark:bg-neutral-900">
+                <h1 className="text-xl font-bold text-gray-800 dark:text-gray-50">{blog.title}</h1>
+                <p className="mt-2 text-gray-600 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
+                <div className="flex items-center gap-2 mt-5">  
+                  <span className="text-gray-600 dark:text-gray-50 text-sm italic">{blog.created_at
+                      ? new Intl.DateTimeFormat("en-US", {
+                          month: "short", // Menghasilkan bulan dalam bentuk singkat (e.g., "DEC")
+                          day: "numeric", // Tanggal (e.g., "7")
+                          year: "numeric", // Tahun (e.g., "2024")
+                        }).format(blog.created_at)
+                      : ""}</span>
                 </div>
-            </div>
-            <AuthButton />
+                <div className="flex items-center gap-2 mt-5">
+                  <Link
+                    href={`/blogs/${blog.slug}`}
+                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-orange-600 rounded-full hover:bg-orange-500 opacity-75 font-semibold text-black self-baseline"
+                  >
+                    Read More
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          <AuthButton />
         </div>
     )
 }

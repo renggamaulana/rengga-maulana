@@ -5,6 +5,7 @@ import { Playfair_Display, Inter, League_Spartan, Fredericka_the_Great } from 'n
 import { usePathname } from "next/navigation";
 import Navbar from '../components/Navbar';
 import ThemeUpdater from "@/components/ThemeUpdater";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ['latin'] });
 const playfairDisplay = Playfair_Display({ subsets: ['latin'] });
@@ -30,6 +31,7 @@ export default function RootLayout({
           <ThemeUpdater/>
           <Navbar/>
           {children}
+          <Footer/>
         </ThemeProvider>
       </body>
     </html>
