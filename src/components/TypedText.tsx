@@ -27,7 +27,7 @@ const TypedText: React.FC<TypedTextProps> = ({ strings, typeSpeed = 50, backSpee
     };
   }, [strings, typeSpeed, backSpeed, loop]);
 
-  return <span ref={typedRef} />;
+  return <span ref={typedRef} className="adventPro" />;
 };
 
 export default TypedText;

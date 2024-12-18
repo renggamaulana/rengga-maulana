@@ -91,3 +91,13 @@ body, main {
 ::-webkit-scrollbar-thumb:hover {
   background: #cf5914;
 }
+
+.capriola {
+  font-family: var(--font-capriola);
+}
+
+.adventPro {
+  font-family: var(--font-advent-pro);
+  font-weight: 200;
+  color: #5c5cff;
+}

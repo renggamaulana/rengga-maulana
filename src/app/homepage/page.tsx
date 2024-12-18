@@ -18,6 +18,7 @@ import simpleMind  from '../../assets/images/simple-mind.png'
 import fox from '../../assets/images/fox.png'
 import TypedText from "@/components/TypedText";
 
+
 export default function Homepage() {
     const sectionsRef = useRef<(HTMLElement | null)[]>([]);
     // Intersection Observer untuk mengamati elemen tersembunyi
@@ -98,7 +99,7 @@ export default function Homepage() {
                     <Image src={fox} alt='' className="w-32 md:w-48 mr-3"/>
                 </div>
                 <div className="text-center">
-                    <a href="#profile" className="text-5xl text-orange-500 font-semibold font-bangers tracking-widest uppercase">
+                    <a href="#profile" className="capriola text-5xl text-orange-500  font-semibold font-bangers tracking-widest uppercase">
                         {/* <span className="shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ff8000,0_0_15px_#ff8000,0_0_30px_#ff8000]">Rengga Maulana</span> */}
                         Rengga Maulana
                     </a>

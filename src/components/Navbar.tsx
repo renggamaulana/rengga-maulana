@@ -37,11 +37,19 @@ export default function Navbar() {
     {
       name: 'Blog',
       url: '/blogs'
+    },
+    {
+      name: 'Gallery',
+      url: '/gallery'
+    },
+    {
+      name: 'About',
+      url: '/about'
     }
   ]
   return (
         <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
-          <nav className="flex justify-between items-center px-5 py-5 lg:w-auto w-full">
+          <nav className="flex justify-between capriola items-center px-5 py-5 lg:w-auto w-full">
             <h1 className="font-bold text-xl text-orange-400">
               <Link href="/">&lt;/&gt;</Link>
             </h1>
