@@ -17,7 +17,6 @@ interface Categories {
 }
 
 const Blogs =  () => {
-    const username:string = "Rengga";
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [categories, setCategories] = useState<Categories[]>([]);
     const [error, setError] = useState(null);
@@ -62,7 +61,10 @@ const Blogs =  () => {
         <div className="px-5 lg:px-20 py-10">
           {/* Categories */}
           <div className="p-10 dark:bg-neutral-900 bg-white border border-neutral-200 shadow dark:border-none rounded-lg">
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
+            <div className="flex justify-between">
+              <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
+              <AuthButton label="Crete New Blog" path="/blogs/create/"/>
+            </div>
             <div className="flex flex-wrap gap-3 mt-5">
               {/* dangerouslySetInnerHTML={{ __html: blog.excerpt }} */}
               {categories.map((category) => {
@@ -108,7 +110,6 @@ const Blogs =  () => {
               </div>
             ))}
           </div>
-          <AuthButton />
         </div>
     )
 }

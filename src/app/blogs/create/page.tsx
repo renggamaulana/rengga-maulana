@@ -9,8 +9,6 @@ import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import hljs from "highlight.js"; // Import highlight.js
 import "highlight.js/styles/github.css";
-import { serverTimestamp } from "firebase/firestore";
-import firebase from "firebase/compat/app";
 import Image from "next/image";
 
 hljs.configure({ languages: ["javascript", "python", "java", "html"] }); 
@@ -42,7 +40,7 @@ const CreateBlog = () => {
         if(image) {
             const formData = new FormData();
             formData.append("image", image);
-            console.log(formData);
+            formData.append("page", "blog");
 
             const response = await fetch("/api/upload", {
                 method: "POST",

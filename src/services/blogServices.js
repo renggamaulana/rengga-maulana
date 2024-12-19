@@ -1,6 +1,5 @@
 import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc, query, where, Timestamp, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import convertTimestampToDate from "@/utils/convertTimestampToDate";
 
 const blogCollectionRef = collection(db, "blogs");
 

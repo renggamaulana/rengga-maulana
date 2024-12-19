@@ -5,6 +5,7 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const file = formData.get('image') as Blob;
+    const page = formData.get('page') as string;
 
     if (!file) {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
 
     // Upload image to Cloudinary
     const result = await cloudinary.uploader.upload(dataUrl, {
-      folder: 'blog-images',
+      folder: `${page}-images`,
     });
 
     return NextResponse.json({ url: result.secure_url }); // Return image URL

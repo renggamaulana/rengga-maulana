@@ -4,7 +4,12 @@ import { auth } from "../lib/firebase"; // Pastikan Anda mengimpor auth dari kon
 import Link from "next/link";
 import { HiPencilAlt } from "react-icons/hi"; // Pastikan Anda mengimpor ikon yang dibutuhkan
 
-const AuthButton = () => {
+interface AuthButtonProps {
+  label: string;
+  path:string;
+}
+
+const AuthButton: React.FC<AuthButtonProps> = ({ label, path }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -18,9 +23,9 @@ const AuthButton = () => {
   return (
     <>
       {user ? ( // Cek hanya apakah ada user yang terautentikasi
-        <button className="fixed bottom-10 right-10 lg:right-[70px]">
-          <Link href="/blogs/create">
-            <HiPencilAlt className="text-3xl text-gray-800 hover:text-orange-500 dark:text-gray-50 dark:hover:text-orange-500" />
+        <button className="bg-orange-500 hover:bg-orange-600 p-2 rounded-lg">
+          <Link href={path}>
+            <span className="text-md font-semibold text-gray-800 hover:text-orange-500 dark:text-gray-50 dark:hover:text-gray-100">{label}</span>
           </Link>
         </button>
       ) : null} {/* Tombol hanya muncul jika ada user yang terautentikasi */}
