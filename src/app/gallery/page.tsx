@@ -2,7 +2,7 @@
 import AuthButton from "@/components/AuthButton";
 import { motion } from "framer-motion";
 import { Gallery } from "@/types/gallery";
-import { getGalleries } from "@/services/galleryServices";
+import { deleteGallery, getGalleries } from "@/services/galleryServices";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Loading";
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,7 +13,7 @@ export default function Page() {
     const [galleries, setGalleries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const [triggerFetch, setTriggerFetch] = useState(false); 
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -24,20 +24,34 @@ export default function Page() {
         return () => unsubscribe(); // Bersihkan listener saat komponen di-unmount
     }, []);
 
+    const fetchGalleries = async () => {
+      try {
+          const data:any = await getGalleries();
+          setGalleries(data);
+          setLoading(false);
+      } catch (err) {
+          console.error(err);
+      } finally {
+          setLoading(false);
+      }
+    }
+    
     useEffect(() => {
-        const fetchGalleries = async () => {
-            try {
-                const data:any = await getGalleries();
-                setGalleries(data);
-                setLoading(false);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        }
         fetchGalleries();
-    }, []);
+    }, [triggerFetch]);
+
+    const handleDelete = async (gallery:Gallery) => {
+      const confirmation = confirm("Are you sure want to delete this item from gallery?");
+        if(!confirmation) return;
+        try {
+            await deleteGallery(gallery?.slug);
+            setTriggerFetch((prev) => !prev);
+            alert("Item deleted successfully.");
+        } catch (err) {
+            alert(err);
+        }
+
+    }
 
     if(loading) {
         return <Loading />;
@@ -47,7 +61,7 @@ export default function Page() {
       }
 
     return (
-        <div className="p-10 lg:p-20 h-screen mb-10">
+        <div className="p-10 lg:p-20 mb-10">
             <header className="flex justify-between items-center">
                 <motion.div
                     initial={{ opacity: 0, x: -100 }}
@@ -57,12 +71,12 @@ export default function Page() {
                         borderBottom: '5px solid #5c5cff',
                         width: 'fit-content',
                     }}>
-                        <h1 className="text-center text-6xl font-bold">Gallery</h1> 
+                        <h1 className="text-center text-3xl lg:text-6xl font-bold">Gallery</h1> 
                 </motion.div>
                 <AuthButton label="Add Gallery" path="/gallery/create" />
             </header>
 
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-5">
       {galleries.map((gallery:Gallery, index) => {
         // Variasi animasi berdasarkan indeks
         const isFirstColumn = index % 2 === 0; // Kolom pertama dari kiri
@@ -87,7 +101,7 @@ export default function Page() {
             whileTap={{ scale: 0.97 }}
           >
             {user && (
-              <motion.button
+              <motion.button onClick={() => handleDelete(gallery)}
                 className="absolute -top-4 -right-2 bg-rose-600 rounded-full w-7 h-7 flex justify-center items-center"
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}

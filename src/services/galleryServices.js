@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, doc, Timestamp, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, query, where, Timestamp, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 const galleryCollectionRef = collection(db, "galleries");
@@ -54,10 +54,19 @@ export const updateGallery = async (id, updatedGalleryData) => {
 };
 
 // Delete gallery
-export const deleteGallery = async (id) => {
+export const deleteGallery = async (slug) => {
     try {
-        const galleryDoc = doc(db, "galleries", id);
-        await deleteDoc(galleryDoc);
+        const galleriesCollection = collection(db, "galleries");
+        const q = query(galleriesCollection, where("slug", "==", slug)); // Query by slug
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            throw new Error("Gallery not found");
+        }
+
+        querySnapshot.forEach(async (docSnapshot) => {
+            await deleteDoc(docSnapshot.ref); // Delete each document that matches
+        });
     } catch (error) {
         throw new Error("Error deleting gallery: " + error.message);
     }
