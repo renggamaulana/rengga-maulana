@@ -1,10 +1,13 @@
 "use client"
 import { withAuth } from "@/components/WithAuth"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createGallery } from "@/services/galleryServices";
 import Image from "next/image";
 
+interface Errors {
+    [key: string]: string;
+}
 
 const CreateGallery = () => {
 
@@ -12,8 +15,35 @@ const CreateGallery = () => {
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState<Errors>({});
+    const [isFormValid, setIsFormValid] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        if(isSubmitted) {
+            validateForm();
+        }
+    }, [title, description, image]);
+
+    const validateForm = () => {
+        let errors : Errors = {};
+
+        if (!title) {
+            errors.title = "Title is required";
+        }
+        if (!description) {
+            errors.description = "Description is required";
+        }
+        if (!image) {
+            errors.image = "Image is required";
+        }
+
+        setErrors(errors);
+        setIsFormValid(Object.keys(errors).length === 0);
+    }
 
     const handleImage = (e:any) => {
         const file = e.target.files[0];
@@ -37,7 +67,15 @@ const CreateGallery = () => {
 
     const handleSubmit = async (e:any) => {
         e.preventDefault();
+        setIsSubmitted(true);
+        // Validasi sebelum melanjutkan
+        validateForm();
+        if (!isFormValid) {
+            setIsLoading(false);
+            return; // Hentikan proses jika form tidak valid
+        }
         setIsLoading(true);
+
         let uploadedImageUrl = ""; 
         // upload image
         if(image) {
@@ -53,8 +91,11 @@ const CreateGallery = () => {
             console.log("data:", data)
             if(response.ok) {
                 uploadedImageUrl = data.url;
+                setImageUrl(uploadedImageUrl);
             } else {
                 console.error('Error uploading image:', `${data.error}: ${data.error.details}`);
+                alert("Image upload failed");
+                setIsLoading(false);
                 return;
             }
         };
@@ -86,14 +127,17 @@ const CreateGallery = () => {
                     <div className="flex gap-3 flex-col">
                         <label htmlFor="title" className="text-xl font-semibold">Title</label>
                         <input onChange={handleTitleChange} value={title} type="text" name="title" id="title" className="w-full px-5 h-7 text-gray-800 rounded-md border-2 border-gray-300" />
+                        {isSubmitted && errors.title && <p className="text-red-500">{errors.title}</p>}
                     </div>
                     <div className="flex gap-3 flex-col">
                         <label htmlFor="description" className="text-xl font-semibold">Description</label>
-                        <input onChange={(e) => setDescription(e.target.value)} type="text" name="description" id="description" className="w-full px-5 h-7 text-gray-800 rounded-md border-2 border-gray-300" />
+                        <input onChange={(e) => setDescription(e.target.value)} value={description} type="text" name="description" id="description" className="w-full px-5 h-7 text-gray-800 rounded-md border-2 border-gray-300" />
+                        {isSubmitted && errors.description && <p className="text-red-500">{errors.description}</p>}
                     </div>
                     <div className="flex gap-3 flex-col">
                         <label htmlFor="image" className="text-xl font-semibold">Image</label>
                         <input type="file" accept="image/*" onChange={handleImage} required />
+                        {isSubmitted && errors.image && <p className="text-red-500">{errors.image}</p>}
                         {image && <Image src={URL.createObjectURL(image)} alt="Preview" width={200} height={200} className="mt-3"/>}
                     </div>
                     {/* <button onClick={handleSubmit} className="bg-orange-500 hover:bg-orange-600 p-2 rounded-lg">Create</button> */}

@@ -67,11 +67,9 @@ export default function Page() {
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
-                    style={{
-                        borderBottom: '5px solid #5c5cff',
-                        width: 'fit-content',
-                    }}>
-                        <h1 className="text-center text-3xl lg:text-6xl font-bold">Gallery</h1> 
+                    >
+                        <h1 className="capriola text-3xl lg:text-5xl font-bold border-b-8 border-indigo-500">Gallery</h1> 
+                        <p className="capriola mt-3 text-gray-500 dark:text-white">Welcome to my Gallery!</p> 
                 </motion.div>
                 <AuthButton label="Add Gallery" path="/gallery/create" />
             </header>
@@ -95,11 +93,11 @@ export default function Page() {
         return (
           <motion.div
             key={index}
-            className="flex flex-col gap-2 relative"
+            className="flex flex-col gap-2 relative group w-full h-56 lg:h-64 overflow-hidden"
             {...animationProps}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-          >
+            >
             {user && (
               <motion.button onClick={() => handleDelete(gallery)}
                 className="absolute -top-4 -right-2 bg-rose-600 rounded-full w-7 h-7 flex justify-center items-center"
@@ -112,13 +110,14 @@ export default function Page() {
             <motion.img
               src={gallery.image_url}
               alt={gallery.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-56 lg:h-64 object-cover"
               whileHover={{ scale: 1 }}
               transition={{ duration: 0.3 }}
             />
-            <div>
-              <h2 className="text-2xl font-semibold">{gallery.title}</h2>
-              <p className="text-sm">{gallery.description}</p>
+             {/* Overlay Teks */}
+            <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
+              <h2 className="text-white text-lg font-semibold">{gallery.title}</h2>
+              <p className="text-gray-200 text-sm">{gallery.description}</p>
             </div>
           </motion.div>
         );
