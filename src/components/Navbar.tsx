@@ -48,7 +48,7 @@ export default function Navbar() {
     }
   ]
   return (
-        <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
+        <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white shadow' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
           <nav className="flex justify-between capriola items-center px-5 py-5 lg:w-auto w-full">
             <h1 className="font-bold text-xl text-orange-400">
               <Link href="/">&lt;/&gt;</Link>
