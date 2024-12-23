@@ -50,7 +50,7 @@ export default function Navbar() {
   return (
         <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white shadow' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
           <nav className="flex justify-between capriola items-center px-5 py-5 lg:w-auto w-full">
-            <h1 className="font-bold text-xl text-orange-400">
+            <h1 className="font-bold text-xl text-sky-400">
               <Link href="/">&lt;/&gt;</Link>
             </h1>
             {/* Hamburger Menu Toggle Button */}
@@ -77,12 +77,12 @@ export default function Navbar() {
               <div className={`absolute lg:static top-8 md:top-10 right-3 ${open? 'opacity-100 duration-500 bg-white dark:bg-gradient-to-tl from-neutral-900 to-neutral-950 shadow dark:shadow-none' : 'opacity-0'} rounded md:rounded-none md:opacity-100 w-[50vw] md:w-auto`}>
                 <ul className={`text-base gap-5 text-gray-600 p-5 flex lg:items-center lg:flex lg:flex-row ${open? 'flex flex-col md:w-[32vw] md:py-10' : 'hidden'} md:justify-between`}>
                     {menus.map((menu) => (
-                      <li key={menu.name} onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-orange-500 dark:hover:text-orange-500 dark:text-gray-50 font-semibold">
+                      <li key={menu.name} onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-sky-500 dark:hover:text-sky-500 dark:text-gray-50 font-semibold">
                           <Link href={menu.url}>{menu.name}</Link>
                       </li>
                     ))}
                     <li>
-                      <a href="https://drive.google.com/file/d/1zVT4NGTqSQ4KHpIHvXmETal6RbGti9d4/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-orange-700 to-orange-500 p-2 rounded-md">Resume</a>
+                      <a href="https://drive.google.com/file/d/1zVT4NGTqSQ4KHpIHvXmETal6RbGti9d4/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-sky-700 to-sky-500 p-2 rounded-md">Resume</a>
                     </li>
                     <li>
                       <button

@@ -83,13 +83,13 @@ body, main {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #e7712d;
+  background: #1491cf;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #cf5914;
+  background: #1385be;
 }
 
 .capriola {

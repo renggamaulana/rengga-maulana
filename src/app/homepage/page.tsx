@@ -108,7 +108,7 @@ export default function Homepage() {
                     <Image src={fox} alt='' className="w-32 md:w-48 mr-3"/>
                 </div>
                 <div className="text-center">
-                    <a href="#profile" className="capriola text-5xl text-orange-500  font-semibold font-bangers tracking-widest uppercase">
+                    <a href="#profile" className="capriola text-5xl text-sky-500  font-semibold font-bangers tracking-widest uppercase">
                         {/* <span className="shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ff8000,0_0_15px_#ff8000,0_0_30px_#ff8000]">Rengga Maulana</span> */}
                         Rengga Maulana
                     </a>
@@ -121,13 +121,13 @@ export default function Homepage() {
                         />
                     </p>
                 </div>
-                <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold text-orange-500 italic underline">beautifully</span> designed and <span className="font-bold text-orange-500 italic underline">effectively</span> functional websites.</p>
+                <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold text-sky-500 italic underline">beautifully</span> designed and <span className="font-bold text-sky-500 italic underline">effectively</span> functional websites.</p>
                 <SocialMedia pathname="" />
             </div>
             </section>
             <section ref={(el) => {sectionsRef.current[1] = el}} className="hidden-section pt-5" id="projects">
                 <div className="relative inline-block">
-                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
+                    <span className="absolute inset-0 bg-sky-500 h-3 top-6 -z-10"></span>
                     <h1 className="font-bold text-neutral-700 dark:text-neutral-100 text-3xl">Projects</h1>
                 </div>
                 <div className="grid grid-cols-1 mt-10 gap-3 md:gap-10 md:grid-cols-2">
@@ -136,10 +136,10 @@ export default function Homepage() {
                             <div className="dark:bg-neutral-900 bg-white shadow-lg dark:md:border dark:md:bg-neutral-900 dark:md:border-none rounded px-3 py-5 md:px-5 md:py-8">
                             <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                                 <Image src={project.image} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
-                                <a href={project.link} target="_blank" className="hover:text-orange-400 group">
+                                <a href={project.link} target="_blank" className="hover:text-sky-400 group">
                                 <div className="flex gap-5 items-center">
-                                    <h3 className="text-gray-800 dark:text-gray-50 text-xl font-semibold group-hover:text-orange-400">{project.name}</h3>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800 dark:text-gray-50 size-6 group-hover:-translate-y-1 group-hover:text-orange-400">
+                                    <h3 className="text-gray-800 dark:text-gray-50 text-xl font-semibold group-hover:text-sky-400">{project.name}</h3>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800 dark:text-gray-50 size-6 group-hover:-translate-y-1 group-hover:text-sky-400">
                                     <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L8.03 17.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V10.5a.75.75 0 0 1 1.5 0v8.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h8.25a.75.75 0 0 1 0 1.5H5.25Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
@@ -149,7 +149,7 @@ export default function Homepage() {
                             <div className="flex flex-wrap gap-3 mt-4">
                                 {project.stacks.map((stack) => {
                                     return(
-                                        <span key={stack} className="px-4 py-1 hover:-translate-y-0.5 duration-300 bg-gray-50 border border-orange-600 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-orange-800 hover:text-neutral-100 text-orange-500 rounded-full shadow-[0_0_1px_#fff,inset_0_0_1px_#fff,0_0_2px_#ff8000,0_0_1px_#ff8000,0_0_8px_#ff8000]">{stack}</span>
+                                        <span key={stack} className="px-4 py-1 hover:-translate-y-0.5 duration-300 bg-gray-50 border border-sky-600 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-sky-800 hover:text-neutral-100 text-sky-500 rounded-full shadow-[0_0_1px_#fff,inset_0_0_1px_#fff,0_0_2px_#24badc,0_0_1px_#4cc8eb,0_0_8px_#3da4e4]">{stack}</span>
                                     )
                                 })}
                             </div>
@@ -161,7 +161,7 @@ export default function Homepage() {
             <section ref={(el) => {sectionsRef.current[2] = el}} className="hidden-section min-h-screen pt-5" id="stack">
                 <div className="mb-5">
                 <div className="relative inline-block">
-                    <span className="absolute inset-0 bg-orange-500 h-3 top-6 -z-10"></span>
+                    <span className="absolute inset-0 bg-sky-500 h-3 top-6 -z-10"></span>
                     <h1 className="font-bold text-neutral-700 dark:text-neutral-100 text-3xl">Stack</h1>
                 </div>
                 <p className="text-xl text-neutral-400 tracking-wide">Tools and technologies I use.</p>

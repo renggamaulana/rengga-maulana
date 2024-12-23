@@ -72,7 +72,7 @@ const Blogs =  () => {
                   <Link
                     href="#"
                     key={category.id}
-                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-orange-600 rounded-full hover:bg-orange-500 opacity-75 font-semibold text-black self-baseline"
+                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline"
                   >
                    <Dot color={category.color} size={8} /> {category.name}
                   </Link>
@@ -102,7 +102,7 @@ const Blogs =  () => {
                 <div className="flex items-center gap-2 mt-5">
                   <Link
                     href={`/blogs/${blog.slug}`}
-                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-orange-600 rounded-full hover:bg-orange-500 opacity-75 font-semibold text-black self-baseline"
+                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline"
                   >
                     Read More
                   </Link>
