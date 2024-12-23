@@ -17,6 +17,7 @@ import profile  from '../../assets/images/profile.jpeg'
 import simpleMind  from '../../assets/images/simple-mind.png'
 import fox from '../../assets/images/fox.png'
 import TypedText from "@/components/TypedText";
+import rillbite from '../../assets/images/rillbite-mockup.png'
 
 
 export default function Homepage() {
@@ -54,6 +55,13 @@ export default function Homepage() {
     }, []);
 
     const projects = [
+        {
+            name: 'Rillbite',
+            description: 'Rillbite is the best recipe app for anyone who wants to lead a healthier life.',
+            stacks: ['Next.js', 'Tailwind', 'TypeScript'],
+            image: rillbite,
+            link: 'https://rillbite.vercel.app/'
+        },
         {
             name: 'Daphone',
             description: 'Daphone is an e-commerce website for selling or trade-in a secondhand gadget from around Jabodetabek.',

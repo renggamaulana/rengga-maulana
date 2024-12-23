@@ -20,6 +20,9 @@ const SingleBlog = () => {
     const [loading, setLoading] = useState(true);
     const [readingTime, setReadingTime] = useState(0);
     const router = useRouter();
+    const [content, setContent] = useState('');
+
+
 
     useEffect(() => {
         const fetchSingleBlog = async () => {
@@ -33,6 +36,7 @@ const SingleBlog = () => {
                 setBlog(formattedData);
                 setLoading(false);
                 if (data?.content) {
+                    setContent(data.content);
                     const time = calculateReadingTime(data.content);
                     setReadingTime(time);
                 }
@@ -41,8 +45,10 @@ const SingleBlog = () => {
             }
         }
         fetchSingleBlog();
-        hljs.highlightAll();
-    }, []);
+        if (content) {
+            hljs.highlightAll();
+        }
+    }, [content]);
 
     const calculateReadingTime =  (content:string) => {
         const wpm = 225; //words per minute

@@ -15,7 +15,6 @@ const CreateGallery = () => {
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
-    const [imageUrl, setImageUrl] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<Errors>({});
     const [isFormValid, setIsFormValid] = useState(false);
@@ -91,7 +90,6 @@ const CreateGallery = () => {
             console.log("data:", data)
             if(response.ok) {
                 uploadedImageUrl = data.url;
-                setImageUrl(uploadedImageUrl);
             } else {
                 console.error('Error uploading image:', `${data.error}: ${data.error.details}`);
                 alert("Image upload failed");
