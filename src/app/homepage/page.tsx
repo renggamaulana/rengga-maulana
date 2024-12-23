@@ -168,7 +168,7 @@ export default function Homepage() {
                             <div className="dark:bg-neutral-900 bg-white shadow-lg dark:md:border dark:md:bg-neutral-900 dark:md:border-none rounded px-3 py-5 md:px-5 md:py-8">
                             <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
                                 <Image src={project.image} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
-                                <a href="https://daphone.my.id" className="hover:text-orange-400 group">
+                                <a href={project.link} className="hover:text-orange-400 group">
                                 <div className="flex gap-5 items-center">
                                     <h3 className="text-gray-800 dark:text-gray-50 text-xl font-semibold group-hover:text-orange-400">{project.name}</h3>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800 dark:text-gray-50 size-6 group-hover:-translate-y-1 group-hover:text-orange-400">
