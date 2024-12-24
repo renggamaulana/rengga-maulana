@@ -36,7 +36,7 @@ const CreateBlog = () => {
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
     const [content, setContent] = useState("");
-    const [categoryId, setCategoryId] = useState(0);
+    const [categoryId, setCategoryId] = useState("");
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const [categories, setCategories] = useState<any>([]);
@@ -119,6 +119,7 @@ const CreateBlog = () => {
             content: content,
             excerpt: generatedExcerpt,
             image_url: uploadedImageUrl,
+            categoryId: categoryId
         };
 
         try {
@@ -210,7 +211,7 @@ const CreateBlog = () => {
                     {isSubmitted && errors.content && <p className="text-red-500">{errors.content}</p>}
                     <div className="flex flex-col gap-2 w-full">
                         <label className="text-2xl text-gray-700 dark:text-gray-50 font-semibold" htmlFor="categories">Categories</label>
-                        <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="p-2 border dark:text-neutral-900 bg-white border-gray-300 rounded-md" id="categories">
+                        <select name="categoryId" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="p-2 border dark:text-neutral-900 bg-white border-gray-300 rounded-md" id="categories">
                             {categories.map((category:any) => (
                                 <option  key={category.id} value={category.id}>{category.name}</option>
                             ))}
@@ -225,7 +226,7 @@ const CreateBlog = () => {
                     <button
                         onClick={onSubmit}
                         disabled={isLoading}
-                        className={`flex items-center justify-center rounded-md border border-transparent bg-orange-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
+                        className={`flex items-center justify-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
                         isLoading ? "cursor-not-allowed opacity-50" : ""
                         }`}
                     >

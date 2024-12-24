@@ -9,12 +9,14 @@ import AuthButton from "@/components/AuthButton";
 import { Blog } from "@/types/blog";
 import Dot from "@/components/Dot";
 import Image from "next/image";
+import CategoryList from "@/components/CategoryList";
 
-interface Categories {
-  id: number;
-  name: string;
-  color: string
-}
+// interface Categories {
+//   id: number;
+//   name: string;
+//   slug: string;
+//   color: string
+// }
 
 const Blogs =  () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -28,7 +30,7 @@ const Blogs =  () => {
         try {
           const data:any = await getBlogs();
           setBlogs(data);
-          console.log('data: ',data);
+          console.log('blogData: ',data);
           setLoading(false);
         } catch (err) {
           console.error(err);
@@ -60,27 +62,7 @@ const Blogs =  () => {
     return(
         <div className="px-5 lg:px-20 py-10">
           {/* Categories */}
-          <div className="p-10 dark:bg-neutral-900 bg-white border border-neutral-200 shadow dark:border-none rounded-lg">
-            <div className="flex justify-between">
-              <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-50">Topics</h1>
-              <AuthButton label="Crete New Blog" path="/blogs/create/"/>
-            </div>
-            <div className="flex flex-wrap gap-3 mt-5">
-              {/* dangerouslySetInnerHTML={{ __html: blog.excerpt }} */}
-              {categories.map((category) => {
-                return (
-                  <Link
-                    href="#"
-                    key={category.id}
-                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline"
-                  >
-                   <Dot color={category.color} size={8} /> {category.name}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
+          <CategoryList categories={categories}/>
           {/* Main */}
           <div className="grid mt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {blogs.map((blog) => (
@@ -88,7 +70,18 @@ const Blogs =  () => {
                 <div className="w-full h-52 mb-5">
                   <Image src={blog.image_url} alt={blog.title} className="object-cover w-full h-full" width={1000} height={1000} />
                 </div>
-                <h1 className="text-xl font-bold text-gray-800 dark:text-gray-50">{blog.title}</h1>
+                <div className="flex flex-wrap gap-3 my-5">
+                  <Link
+                    href="#"
+                    className="flex text-sm items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline"
+                  >
+                    {/* {blog.categoryName} */}
+                   <Dot color={blog.categoryColor} size={8} /> {blog.categoryName}
+                  </Link>
+                </div>
+                <Link  href={`/blogs/${blog.slug}`}>
+                  <h1 className="text-xl font-bold text-gray-800 dark:text-gray-50 hover:underline">{blog.title}</h1>
+                </Link>
                 <p className="mt-2 text-gray-600 dark:text-gray-50" dangerouslySetInnerHTML={{ __html: blog.excerpt }}></p>
                 <div className="flex items-center gap-2 mt-5">  
                   <span className="text-gray-600 dark:text-gray-50 text-sm italic">{blog.created_at
@@ -98,14 +91,6 @@ const Blogs =  () => {
                           year: "numeric", // Tahun (e.g., "2024")
                         }).format(blog.created_at)
                       : ""}</span>
-                </div>
-                <div className="flex items-center gap-2 mt-5">
-                  <Link
-                    href={`/blogs/${blog.slug}`}
-                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline"
-                  >
-                    Read More
-                  </Link>
                 </div>
               </div>
             ))}

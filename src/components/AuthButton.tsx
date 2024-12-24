@@ -25,7 +25,7 @@ const AuthButton: React.FC<AuthButtonProps> = ({ label, path }) => {
       {user ? ( // Cek hanya apakah ada user yang terautentikasi
         <button className="bg-sky-500 hover:bg-sky-600 p-2 rounded-lg">
           <Link href={path}>
-            <span className="text-md font-semibold text-gray-800 hover:text-sky-500 dark:text-gray-50 dark:hover:text-gray-100">{label}</span>
+            <span className="text-md font-semibold text-gray-50 dark:hover:text-gray-100">{label}</span>
           </Link>
         </button>
       ) : null} {/* Tombol hanya muncul jika ada user yang terautentikasi */}

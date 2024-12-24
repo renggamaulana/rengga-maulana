@@ -4,8 +4,6 @@ import Link from "next/link"
 import { notFound, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Loading";
-import { MdOutlineModeEdit } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import EditDeleteButton from "@/components/EditDeleteButton";
 import hljs from "highlight.js";
@@ -22,8 +20,6 @@ const SingleBlog = () => {
     const router = useRouter();
     const [content, setContent] = useState('');
 
-
-
     useEffect(() => {
         const fetchSingleBlog = async () => {
             try {
@@ -33,6 +29,7 @@ const SingleBlog = () => {
                     created_at: data?.created_at.toDate(),
                     updated_at: data?.created_at.toDate(),
                 }
+                console.log('blog:', formattedData);
                 setBlog(formattedData);
                 setLoading(false);
                 if (data?.content) {
@@ -81,8 +78,8 @@ const SingleBlog = () => {
             <div className="flex divide-y flex-col">
                 <h1 className="text-3xl lg:text-5xl whitespace-pre-wrap text-gray-800 dark:text-gray-50 font-bold mb-5">{blog?.title}</h1>
                 <p className="text-sm dark:text-gray-400 text-gray-700 py-3">
-                    Published in 
-                    <span className="text-gray-800 font-semibold dark:text-gray-100"> Self Help </span> · 
+                    Published in  
+                    <span className="text-gray-800 font-semibold dark:text-gray-100"> {blog.categoryName}  </span> · 
                     <span>{readingTime}</span> min read · 
                     <span className="text-gray-600 dark:text-gray-50 text-sm italic">{blog.created_at
                         ? new Intl.DateTimeFormat("en-US", {

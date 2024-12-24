@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, query, where, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 const categoryCollectionRef = collection(db, "categories");
@@ -29,16 +29,28 @@ export const getCategories = async () => {
 };
 
 
-// Get single category by id
-export const getCategoryById = async (id) => {
+// Get single category by slug
+export const getCategoryBySlug = async (slug) => {
     try {
-        const categoryDoc = doc(db, "categories", id);
-        const category = await getDoc(categoryDoc);
-        return category.exists() ? category.data() : null;
+      const categoryCollectionRef = collection(db, "categories");
+      const q = query(categoryCollectionRef, where("slug", "==", slug));
+      const categorySnapshot = await getDocs(q);
+  
+      if (categorySnapshot.empty) {
+        throw new Error("Category not found");
+      }
+  
+      const categoryDoc = categorySnapshot.docs[0]; // Ambil dokumen pertama (karena slug unik)
+      const categoryData = categoryDoc.data();
+  
+      return {
+        id: categoryDoc.id,
+        ...categoryData,
+      };
     } catch (error) {
-        throw new Error("Error fetching category: " + error.message);
+      throw new Error("Error fetching category by slug: " + error.message);
     }
-};
+  };
 
 // Update category
 export const updateCategory = async (id, updatedCategoryData) => {
