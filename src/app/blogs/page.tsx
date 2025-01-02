@@ -11,19 +11,11 @@ import Dot from "@/components/Dot";
 import Image from "next/image";
 import CategoryList from "@/components/CategoryList";
 
-// interface Categories {
-//   id: number;
-//   name: string;
-//   slug: string;
-//   color: string
-// }
-
 const Blogs =  () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [categories, setCategories] = useState<Categories[]>([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-
 
     useEffect(() => {
       const fetchBlogs = async () => {
@@ -50,7 +42,8 @@ const Blogs =  () => {
 
       fetchBlogs();
       fetchCategories();
-    }, []); // empty array means it runs once after the initial render
+    }, []);
+
 
     if(loading) {
       return <Loading />;

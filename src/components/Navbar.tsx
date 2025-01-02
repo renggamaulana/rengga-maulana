@@ -10,10 +10,12 @@ import LogoutButton from './LogoutButton';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useTheme } from "@/context/ThemeContext";
+import { usePathname } from 'next/navigation';
 export default function Navbar() {
 
   const { theme, toggleTheme } = useTheme();
   const [darkMode, setDarkMode] = useState(false);
+  const pathname = usePathname();
 
   const [ open, setOpen ] = useState( false )
 
@@ -77,7 +79,7 @@ export default function Navbar() {
               <div className={`absolute lg:static top-8 md:top-10 right-3 ${open? 'opacity-100 duration-500 bg-white dark:bg-gradient-to-tl from-neutral-900 to-neutral-950 shadow dark:shadow-none' : 'opacity-0'} rounded md:rounded-none md:opacity-100 w-[50vw] md:w-auto`}>
                 <ul className={`text-base gap-5 text-gray-600 p-5 flex lg:items-center lg:flex lg:flex-row ${open? 'flex flex-col md:w-[32vw] md:py-10' : 'hidden'} md:justify-between`}>
                     {menus.map((menu) => (
-                      <li key={menu.name} onClick={() => setTimeout(() => {setOpen(false);}, 200)} className="hover:text-sky-500 dark:hover:text-sky-500 dark:text-gray-50 font-semibold">
+                      <li key={menu.name} onClick={() => setTimeout(() => {setOpen(false);}, 200)} className={`${pathname === menu.url ? 'text-sky-500 dark:text-sky-500' : ''} hover:text-sky-500 dark:hover:text-sky-500 dark:text-gray-50 font-semibold`}>
                           <Link href={menu.url}>{menu.name}</Link>
                       </li>
                     ))}

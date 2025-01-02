@@ -1,8 +1,15 @@
+"use client";
 import Link from "next/link";
 import AuthButton from "../AuthButton";
 import Dot from "../Dot";
+import { getBlogsbyCategory } from "@/services/blogServices";
+import { useEffect, useState } from "react";
+import { Blog } from "@/types/blog";
 
-export default function CategoryList({categories}: any) {
+export default function CategoryList({categories, selectCategory}:any) {
+
+    
+
     return (
         <div className="p-10 dark:bg-neutral-900 bg-white border border-neutral-200 shadow dark:border-none rounded-lg">
             <div className="flex justify-between">
@@ -12,15 +19,11 @@ export default function CategoryList({categories}: any) {
             <div className="flex flex-wrap gap-3 mt-5">
                 {/* dangerouslySetInnerHTML={{ __html: blog.excerpt }} */}
                 {categories.map((category: Categories) => {
-                return (
-                    <Link
-                    href={`/blogs/category/${category.slug}`}
-                    key={category.id}
-                    className="flex items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline"
-                    >
-                    <Dot color={category.color} size={8} /> {category.name}
-                    </Link>
-                );
+                    return (
+                        <button value={category.slug} key={category.id} className="flex items-center gap-2 px-3 py-1 border dark:text-white border-sky-600 rounded-full hover:bg-sky-500 opacity-75 font-semibold text-black self-baseline">
+                            <Dot color={category.color} size={8} /> {category.name}
+                        </button>
+                    );
                 })}
             </div>
         </div>

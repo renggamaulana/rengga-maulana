@@ -131,7 +131,7 @@ export const getBlogsbyCategory = async (slug) => {
         categoryId: blogData.categoryId,
         content: blogData.content,
         categoryName: category.name,
-        categorySlug: category.slug,
+        // categorySlug: category.slug,
         categoryColor: category.color,
         created_at: blogData.created_at?.toDate(),
         updated_at: blogData.updated_at?.toDate(),
