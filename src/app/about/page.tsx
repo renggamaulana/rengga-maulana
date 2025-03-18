@@ -13,10 +13,10 @@ export default function About() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 style={{
-                    borderBottom: '5px solid #5c5cff',
+                    borderBottom: '5px solid #3183ee',
                     width: 'fit-content',
                 }}>
-                    <h1 className="text-center text-3xl lg:text-6xl font-bold">About Me</h1> 
+                    <h1 className="text-center text-3xl lg:text-6xl font-bold dark:text-neutral-200 text-neutral-600">About Me</h1> 
             </motion.div>
             <div className="flex items-center flex-wrap md:flex-nowrap lg:flex-nowrap gap-10">
                 <div className="mt-10 w-full lg:w-1/2">

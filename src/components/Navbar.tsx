@@ -51,7 +51,7 @@ export default function Navbar() {
   ]
   return (
         <header className={`sticky z-10 top-0 ${theme === 'light'? 'bg-white shadow' : ''} dark:bg-gradient-to-tl from-neutral-900 to-neutral-950`}>
-          <nav className="flex justify-between capriola items-center px-5 py-5 lg:w-auto w-full">
+          <nav className="flex justify-between items-center px-5 py-5 lg:w-auto w-full">
             <h1 className="font-bold text-xl text-sky-400">
               <Link href="/">&lt;/&gt;</Link>
             </h1>
@@ -84,7 +84,7 @@ export default function Navbar() {
                       </li>
                     ))}
                     <li>
-                      <a href="https://drive.google.com/file/d/1zVT4NGTqSQ4KHpIHvXmETal6RbGti9d4/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-sky-700 to-sky-500 p-2 rounded-md">Resume</a>
+                      <a href="https://drive.google.com/file/d/1NTqAfNjO1QfMVzKHx1-mmzAITDiJgRFm/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-sky-700 to-sky-500 p-2 rounded-md">Resume</a>
                     </li>
                     <li>
                       <button

@@ -84,20 +84,6 @@ export default function Homepage() {
             image: everydayQuotes,
             link: 'https://everyday-quotes.vercel.app/'
         },
-        {
-            name: 'Transaction Restful API Service',
-            description: 'In this project, I designed a service pattern for transactions, including sending and withdrawing funds, integrated with a user management system.',
-            stacks: ['Fastify', 'Prisma ORM', 'JWT Auth'],
-            image: restfulApi,
-            link: 'https://github.com/renggamaulana/concreteAI-be-assignment'
-        },
-        {
-            name: 'Suzu Nihongo',
-            description: 'Suzu Nihongo stands for 少しずつ日本語(Sukoshi Zutsu Nihongo) where everyone can learn Japanese bit by bit.',
-            stacks: ['Next.js', 'TypeScript', 'API(Laravel)'],
-            image: suzuNihongo,
-            link: 'https://suzu-nihongo.vercel.app/'
-        },
     ]
 
     return(
@@ -108,7 +94,7 @@ export default function Homepage() {
                     <Image src={fox} alt='' className="w-32 md:w-48 mr-3"/>
                 </div>
                 <div className="text-center">
-                    <a href="#profile" className="capriola text-5xl text-sky-500  font-semibold font-bangers tracking-widest uppercase">
+                    <a href="#profile" className="text-5xl text-gray-700 dark:text-white  font-semibold font-bangers uppercase">
                         {/* <span className="shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ff8000,0_0_15px_#ff8000,0_0_30px_#ff8000]">Rengga Maulana</span> */}
                         Rengga Maulana
                     </a>
@@ -149,7 +135,7 @@ export default function Homepage() {
                             <div className="flex flex-wrap gap-3 mt-4">
                                 {project.stacks.map((stack) => {
                                     return(
-                                        <span key={stack} className="px-4 py-1 hover:-translate-y-0.5 duration-300 bg-gray-50 border border-sky-600 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-sky-800 hover:text-neutral-100 text-sky-500 rounded-full shadow-[0_0_1px_#fff,inset_0_0_1px_#fff,0_0_2px_#24badc,0_0_1px_#4cc8eb,0_0_8px_#3da4e4]">{stack}</span>
+                                        <span key={stack} className="px-4 py-1 hover:-translate-y-0.5 duration-300 bg-gray-50 border border-sky-600 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-sky-800 hover:text-sky-600 dark:hover:text-neutral-100 text-sky-500 rounded-full shadow-[0_0_1px_#fff,inset_0_0_1px_#fff,0_0_2px_#24badc,0_0_1px_#4cc8eb,0_0_8px_#3da4e4]">{stack}</span>
                                     )
                                 })}
                             </div>

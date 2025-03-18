@@ -68,8 +68,8 @@ export default function Page() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                     >
-                        <h1 className="capriola text-3xl lg:text-5xl font-bold border-b-8 border-indigo-500">Gallery</h1> 
-                        <p className="capriola mt-3 text-gray-500 dark:text-white">Welcome to my Gallery!</p> 
+                        <h1 className="text-3xl lg:text-5xl font-bold border-b-8 border-sky-500">Gallery</h1> 
+                        <p className="mt-3 text-gray-500 dark:text-white">Welcome to my Gallery!</p> 
                 </motion.div>
                 <AuthButton label="Add Gallery" path="/gallery/create" />
             </header>
