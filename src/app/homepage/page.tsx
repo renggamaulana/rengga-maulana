@@ -18,6 +18,7 @@ import simpleMind  from '../../assets/images/simple-mind.png'
 import fox from '../../assets/images/fox.png'
 import TypedText from "@/components/TypedText";
 import rillbite from '../../assets/images/rillbite-mockup.png'
+import katalisDev from '../../assets/images/katalis-dev.png'
 import SocialMedia from "@/components/SocialMedia";
 
 
@@ -62,6 +63,13 @@ export default function Homepage() {
             stacks: ['Next.js', 'Tailwind', 'TypeScript'],
             image: rillbite,
             link: 'https://rillbite.vercel.app/'
+        },
+        {
+            name: 'Katalis Dev',
+            description: 'Katalis Dev is a modern company profile website built for a digital agency that offers website development, mobile apps, UI/UX design, and technology consulting services.',
+            stacks: ['Vue.js', 'Tailwind', 'Javascript'],
+            image: katalisDev,
+            link: 'https://katalisdev.com/'
         },
         {
             name: 'Daphone',
