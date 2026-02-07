@@ -84,7 +84,7 @@ export default function Navbar() {
                       </li>
                     ))}
                     <li>
-                      <a href="https://drive.google.com/file/d/1aO7IdKIRVTTzmLbrOrDWVeCJdIrRldgn/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-sky-700 to-sky-500 p-2 rounded-md">Resume</a>
+                      <a href="https://drive.google.com/file/d/190WQcXYJDfb08W8uEm1MecsWbZs1zhpj/view" target='_blank' className="text-gray-50 hover:text-white font-semibold bg-gradient-to-r from-sky-700 to-sky-500 p-2 rounded-md">Resume</a>
                     </li>
                     <li>
                       <button
