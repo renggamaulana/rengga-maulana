@@ -24,235 +24,422 @@ import SocialMedia from "@/components/SocialMedia";
 
 export default function Homepage() {
     const sectionsRef = useRef<(HTMLElement | null)[]>([]);
-    // Intersection Observer untuk mengamati elemen tersembunyi
+    
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            } else {
-            entry.target.classList.remove('show');
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        });
+
+        sectionsRef.current.forEach((el) => {
+            if (el) {
+                observer.observe(el);
             }
         });
-    });
 
-    // Mengamati semua elemen yang tersembunyi
-    sectionsRef.current.forEach((el) => {
-      if (el) {
-        // Hanya observe elemen yang tidak null
-        observer.observe(el);
-      }
-    });
-
-    // Bersihkan observer saat komponen tidak digunakan lagi
-    return () => {
-      if (sectionsRef.current) {
-        sectionsRef.current.forEach((el) => {
-          if(el) {
-            observer.unobserve(el)
-          }
-        });
-      }
-    };
+        return () => {
+            if (sectionsRef.current) {
+                sectionsRef.current.forEach((el) => {
+                    if(el) {
+                        observer.unobserve(el)
+                    }
+                });
+            }
+        };
     }, []);
 
     const projects = [
         {
             name: 'Rillbite',
-            description: 'Rillbite is the best recipe app for anyone who wants to lead a healthier life.',
-            stacks: ['Next.js', 'Tailwind', 'TypeScript'],
+            description: 'A comprehensive recipe application helping users maintain healthier lifestyles through curated meal planning and nutritional guidance.',
+            stacks: ['Next.js', 'TypeScript', 'Tailwind CSS'],
             image: rillbite,
-            link: 'https://rillbite.vercel.app/'
+            link: 'https://rillbite.vercel.app/',
+            category: 'Web Application'
         },
         {
             name: 'Katalis Dev',
-            description: 'Katalis Dev is a modern company profile website built for a digital agency that offers website development, mobile apps, UI/UX design, and technology consulting services.',
-            stacks: ['Vue.js', 'Tailwind', 'Javascript'],
+            description: 'Modern company profile showcasing digital agency services including web development, mobile apps, and UI/UX design.',
+            stacks: ['Vue.js', 'JavaScript', 'Tailwind CSS'],
             image: katalisDev,
-            link: 'https://katalisdev.com/'
+            link: 'https://katalisdev.com/',
+            category: 'Corporate Website'
         },
         {
             name: 'Daphone',
-            description: 'Daphone is an e-commerce website for selling or trade-in a secondhand gadget from around Jabodetabek.',
-            stacks: ['Laravel', 'Tailwind', 'Vite'],
+            description: 'E-commerce platform facilitating secondhand gadget sales and trade-ins across the Jabodetabek region.',
+            stacks: ['Laravel', 'Vite', 'Tailwind CSS'],
             image: daphone,
-            link: 'https://daphone.vercel.app/'
+            link: 'https://daphone.vercel.app/',
+            category: 'E-Commerce'
         },
         {
             name: 'Atmosight',
-            description: 'Atmosight delivers real-time weather forecasts for cities worldwide with a clean, easy-to-use interface.',
-            stacks: ['Next.js', 'Tailwind', 'OpenWeather API'],
+            description: 'Real-time weather forecasting application delivering accurate meteorological data with an intuitive interface.',
+            stacks: ['Next.js', 'Tailwind CSS', 'OpenWeather API'],
             image: atmosight,
-            link: 'https://atmosight.vercel.app/'
-        },
-        {
-            name: 'Everyday Quotes',
-            description: 'Everyday Quotes is a random quotes generator to find quotes from famous people on earth.',
-            stacks: ['HTML', 'CSS', 'JavaScript'],
-            image: everydayQuotes,
-            link: 'https://everyday-quotes.vercel.app/'
+            link: 'https://atmosight.vercel.app/',
+            category: 'API Integration'
         },
     ]
 
+    const skills = [
+        {
+            category: 'Frontend',
+            items: ['React', 'Next.js', 'Vue.js', 'TypeScript', 'Tailwind CSS']
+        },
+        {
+            category: 'Backend',
+            items: ['Node.js', 'Laravel', 'RESTful APIs', 'Database Design']
+        },
+        {
+            category: 'Tools & DevOps',
+            items: ['Git', 'Docker', 'CI/CD', 'Postman', 'GitHub Actions']
+        }
+    ]
+
+    const tools = {
+        development: [
+            { name: 'GitHub', description: 'Version control & collaboration', image: github, url: 'https://github.com', featured: true },
+            { name: 'Postman', description: 'API development & testing', image: postman, url: 'https://postman.com' },
+            { name: 'Docker', description: 'Containerization platform', image: docker, url: 'https://docker.com' },
+            { name: 'ChatGPT', description: 'AI-powered development assistant', image: chatGpt, url: 'https://chatgpt.com' },
+        ],
+        productivity: [
+            { name: 'Notion', description: 'Project documentation', image: notion, url: 'https://notion.so' },
+            { name: 'Pitch', description: 'Presentation design', image: pitch, url: 'https://pitch.com' },
+            { name: 'Simple Mind', description: 'Mind mapping & ideation', image: simpleMind, url: 'https://simplemind.eu' },
+        ]
+    }
+
     return(
-        <div className="flex flex-col gap-8 px-5">
-            <section ref={(el) => {sectionsRef.current[0] = el}} className="hidden-section md:min-h-screen flex justify-center items-center" id="profile">
-            <div className="p-5 md:p-20 flex flex-col gap-10">
-                <div className="flex justify-center">
-                    <Image src={fox} alt='' className="w-32 md:w-48 mr-3"/>
+        <div className="min-h-screen">
+            {/* Hero Section */}
+            <section 
+                ref={(el) => {sectionsRef.current[0] = el}} 
+                className="hidden-section relative min-h-screen flex items-center justify-center px-5 py-20 overflow-hidden"
+                id="profile"
+            >
+                {/* Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950"></div>
+                
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-sky-200 dark:bg-sky-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob"></div>
+                    <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+                    <div className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-200 dark:bg-cyan-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
                 </div>
-                <div className="text-center">
-                    <a href="#profile" className="text-5xl text-gray-700 dark:text-white  font-semibold font-bangers uppercase">
-                        {/* <span className="shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#ff8000,0_0_15px_#ff8000,0_0_30px_#ff8000]">Rengga Maulana</span> */}
-                        Rengga Maulana
-                    </a>
-                    <p className="pt-2 dark:text-gray-50 text-gray-800 text-lg md:text-2xl font-semibold font-bangers tracking-widest">
-                        <TypedText
-                            strings={["Web Developer", "Keyboard Warrior 💻", "Bug Breeder (unintentionally)", "Proffesional Sleeper 😴"]}
-                            typeSpeed={50}
-                            backSpeed={40}
-                            loop={true}
-                        />
-                    </p>
+
+                <div className="relative z-10 max-w-6xl mx-auto">
+                    <div className="text-center space-y-8">
+                        {/* Avatar */}
+                        <div className="flex justify-center mb-8">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-sky-400 to-blue-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
+                                <Image 
+                                    src={fox} 
+                                    alt='Rengga Maulana' 
+                                    className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white dark:border-neutral-800 shadow-2xl"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Name & Title */}
+                        <div className="space-y-4">
+                            <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-neutral-900 via-neutral-700 to-neutral-900 dark:from-white dark:via-neutral-200 dark:to-white bg-clip-text text-transparent">
+                                Rengga Maulana
+                            </h1>
+                            
+                            <div className="h-12 md:h-16">
+                                <p className="text-xl md:text-3xl font-semibold text-sky-600 dark:text-sky-400">
+                                    <TypedText
+                                        strings={[
+                                            "Fullstack Engineer",
+                                            "QA Automation",
+                                            "Tech Enthusiast"
+                                        ]}
+                                        typeSpeed={50}
+                                        backSpeed={30}
+                                        loop={true}
+                                    />
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto leading-relaxed">
+                            Crafting <span className="font-bold text-sky-600 dark:text-sky-400">scalable</span> and{' '}
+                            <span className="font-bold text-sky-600 dark:text-sky-400">efficient</span> web solutions
+                            with modern technologies and best practices
+                        </p>
+
+                        {/* Skills Tags */}
+                        <div className="flex flex-wrap justify-center gap-3 pt-4">
+                            {['React', 'Next.js', 'TypeScript', 'Node.js', 'Laravel', 'Tailwind CSS'].map((skill) => (
+                                <span 
+                                    key={skill}
+                                    className="px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full text-sm font-medium text-neutral-700 dark:text-neutral-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                                >
+                                    {skill}
+                                </span>
+                            ))}
+                        </div>
+
+                        {/* CTA Buttons */}
+                        <div className="flex flex-wrap justify-center gap-4 pt-8">
+                            <a 
+                                href="#projects" 
+                                className="group px-8 py-4 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex items-center gap-2"
+                            >
+                                View Projects
+                                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                            <a 
+                                href="https://drive.google.com/file/d/190WQcXYJDfb08W8uEm1MecsWbZs1zhpj/view" 
+                                target="_blank"
+                                className="px-8 py-4 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white border-2 border-neutral-900 dark:border-white rounded-xl font-semibold hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-neutral-900 transition-all duration-200 hover:-translate-y-1"
+                            >
+                                Download Resume
+                            </a>
+                        </div>
+
+                        {/* Social Media */}
+                        <div className="pt-8">
+                            <SocialMedia pathname="" />
+                        </div>
+                    </div>
                 </div>
-                <p className="text-center text-gray-800 dark:text-gray-50 text-xl lg:text-lg tracking-wider leading-8">I create and develop web experiences, focused on producing <span className="font-bold text-sky-500 italic underline">beautifully</span> designed and <span className="font-bold text-sky-500 italic underline">effectively</span> functional websites.</p>
-                <SocialMedia pathname="" />
-            </div>
+
+                {/* Scroll Indicator */}
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                    <svg className="w-6 h-6 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </div>
             </section>
-            <section ref={(el) => {sectionsRef.current[1] = el}} className="hidden-section pt-5" id="projects">
-                <div className="relative inline-block">
-                    <span className="absolute inset-0 bg-sky-500 h-3 top-6 -z-10"></span>
-                    <h1 className="font-bold text-neutral-700 dark:text-neutral-100 text-3xl">Projects</h1>
-                </div>
-                <div className="grid grid-cols-1 mt-10 gap-3 md:gap-10 md:grid-cols-2">
-                    {projects.map((project) => {
-                        return (
-                            <div className="dark:bg-neutral-900 bg-white shadow-lg dark:md:border dark:md:bg-neutral-900 dark:md:border-none rounded px-3 py-5 md:px-5 md:py-8">
-                            <div className="flex flex-wrap md:flex-nowrap items-center gap-5 md:gap-7">
-                                <Image src={project.image} className="w-full h-48 md:w-48 md:h-28 object-container rounded" alt="" />
-                                <a href={project.link} target="_blank" className="hover:text-sky-400 group">
-                                <div className="flex gap-5 items-center">
-                                    <h3 className="text-gray-800 dark:text-gray-50 text-xl font-semibold group-hover:text-sky-400">{project.name}</h3>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800 dark:text-gray-50 size-6 group-hover:-translate-y-1 group-hover:text-sky-400">
-                                    <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L8.03 17.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V10.5a.75.75 0 0 1 1.5 0v8.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h8.25a.75.75 0 0 1 0 1.5H5.25Z" clip-rule="evenodd" />
-                                    </svg>
+
+            {/* Projects Section */}
+            <section 
+                ref={(el) => {sectionsRef.current[1] = el}} 
+                className="hidden-section py-20 px-5 bg-white dark:bg-neutral-900"
+                id="projects"
+            >
+                <div className="max-w-7xl mx-auto">
+                    {/* Section Header */}
+                    <div className="mb-16 text-center">
+                        <div className="inline-block">
+                            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+                                Featured Projects
+                            </h2>
+                            <div className="h-1.5 bg-gradient-to-r from-sky-600 to-blue-600 rounded-full"></div>
+                        </div>
+                        <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                            A selection of my recent work showcasing expertise in modern web technologies
+                        </p>
+                    </div>
+
+                    {/* Projects Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {projects.map((project, index) => (
+                            <a
+                                key={project.name}
+                                href={project.link}
+                                target="_blank"
+                                className="group relative bg-neutral-50 dark:bg-neutral-800 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                            >
+                                {/* Project Image */}
+                                <div className="relative h-64 overflow-hidden bg-neutral-200 dark:bg-neutral-700">
+                                    <Image 
+                                        src={project.image} 
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                        alt={project.name}
+                                    />
+                                    {/* Category Badge */}
+                                    <div className="absolute top-4 left-4">
+                                        <span className="px-3 py-1 bg-white dark:bg-neutral-900 bg-opacity-90 backdrop-blur-sm rounded-full text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+                                            {project.category}
+                                        </span>
+                                    </div>
+                                    {/* External Link Icon */}
+                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div className="p-2 bg-white dark:bg-neutral-900 rounded-full">
+                                            <svg className="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </div>
-                                </a>
-                            </div>
-                            <p className="font-medium text-gray-500 dark:text-gray-400 text-lg mt-5">{project.description}</p>
-                            <div className="flex flex-wrap gap-3 mt-4">
-                                {project.stacks.map((stack) => {
-                                    return(
-                                        <span key={stack} className="px-4 py-1 hover:-translate-y-0.5 duration-300 bg-gray-50 border border-sky-600 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-sky-800 hover:text-sky-600 dark:hover:text-neutral-100 text-sky-500 rounded-full shadow-[0_0_1px_#fff,inset_0_0_1px_#fff,0_0_2px_#24badc,0_0_1px_#4cc8eb,0_0_8px_#3da4e4]">{stack}</span>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                        )
-                    })}
+
+                                {/* Project Info */}
+                                <div className="p-6">
+                                    <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-3 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                                        {project.name}
+                                    </h3>
+                                    <p className="text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2">
+                                        {project.description}
+                                    </p>
+
+                                    {/* Tech Stack */}
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.stacks.map((stack) => (
+                                            <span 
+                                                key={stack}
+                                                className="px-3 py-1 bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300 rounded-lg text-sm font-medium"
+                                            >
+                                                {stack}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </section>
-            <section ref={(el) => {sectionsRef.current[2] = el}} className="hidden-section min-h-screen pt-5" id="stack">
-                <div className="mb-5">
-                <div className="relative inline-block">
-                    <span className="absolute inset-0 bg-sky-500 h-3 top-6 -z-10"></span>
-                    <h1 className="font-bold text-neutral-700 dark:text-neutral-100 text-3xl">Stack</h1>
-                </div>
-                <p className="text-xl text-neutral-400 tracking-wide">Tools and technologies I use.</p>
-                </div>
 
-                {/* Tools Section */}
-                <div className="flex flex-col gap-8">
-                {/* Coding */}
-                <div className="flex flex-col rounded-2xl p-1 bg-neutral-100 dark:bg-neutral-900 ">
-                    <p className="m-0 block shrink-0 px-4 py-2 font-medium text-md md:text-xl text-neutral-900 dark:text-neutral-100">Coding</p>
-                    <div className="relative flex-1 overflow-hidden rounded-xl border shadow-sm border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 grid gap-x-2 p-2 sm:grid-cols-2">
-                    {/* Github */}
-                    <a href="https://github.com" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={github} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Github</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">Featured</span>
+            {/* Skills Section */}
+            <section className="py-20 px-5 bg-neutral-50 dark:bg-neutral-950">
+                <div className="max-w-7xl mx-auto">
+                    <div className="mb-16 text-center">
+                        <div className="inline-block">
+                            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+                                Technical Expertise
+                            </h2>
+                            <div className="h-1.5 bg-gradient-to-r from-sky-600 to-blue-600 rounded-full"></div>
                         </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">Simple repository management.</p>
-                        </div>
-                    </a>
-                    {/* Postman */}
-                    <a href="https://postman.com" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={postman} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Postman</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"></span>
-                        </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">Build and test API.</p>
-                        </div>
-                    </a>
-                    {/* Chat GPT */}
-                    <a href="https://chatgpt.com" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={chatGpt} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Chat GPT</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"></span>
-                        </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">ChatGPT on your desktop.</p>
-                        </div>
-                    </a>
-                    {/* Docker */}
-                    <a href="https://docker.com" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={docker} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Docker</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"></span>
-                        </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">Docker simplifies running apps in portable containers.</p>
-                        </div>
-                    </a>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {skills.map((skillGroup) => (
+                            <div 
+                                key={skillGroup.category}
+                                className="bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                            >
+                                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6 flex items-center gap-3">
+                                    <div className="w-2 h-8 bg-gradient-to-b from-sky-600 to-blue-600 rounded-full"></div>
+                                    {skillGroup.category}
+                                </h3>
+                                <ul className="space-y-3">
+                                    {skillGroup.items.map((skill) => (
+                                        <li 
+                                            key={skill}
+                                            className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"
+                                        >
+                                            <svg className="w-5 h-5 text-sky-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                            </svg>
+                                            {skill}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </div>
-                {/* Productivity */}
-                <div className="flex flex-col rounded-2xl p-1 bg-neutral-100 dark:bg-neutral-900">
-                    <p className="m-0 block shrink-0 px-4 py-2 font-medium text-md md:text-xl text-neutral-900 dark:text-neutral-100">Productivity</p>
-                    <div className="relative flex-1 overflow-hidden rounded-xl border shadow-sm border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 grid gap-x-2 p-2 sm:grid-cols-2">
-                    {/* Notion */}
-                    <a href="https://notion.so" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={notion} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Notion</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"></span>
-                        </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">Documents with endless possibilities.</p>
-                        </div>
-                    </a>
-                    {/* Postman */}
-                    <a href="https://pitch.com" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={pitch} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Pitch</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"></span>
-                        </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">Modern, collaborative presentation tool.</p>
-                        </div>
-                    </a>
-                    {/* Chat GPT */}
-                    <a href="https://simplemind.eu" target="_blank" className="flex items-center gap-4 rounded-lg p-4 no-underline transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800">
-                        <Image src={simpleMind} className="w-12 h-12 object-cover rounded-lg" alt="" />
-                        <div>
-                        <div className="flex items-center gap-2">
-                            <p className="font-medium text-lg text-neutral-900 dark:text-neutral-100">Simple Mind</p>
-                            <span className="rounded-full px-2 font-medium text-xs bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"></span>
-                        </div>
-                        <p className="text-neutral-500 text-lg dark:text-neutral-400">Visual mind mapping tool for brainstorming.</p>
-                        </div>
-                    </a>
-                    </div>
-                </div>
+            </section>
 
+            {/* Tools Section */}
+            <section 
+                ref={(el) => {sectionsRef.current[2] = el}} 
+                className="hidden-section py-20 px-5 bg-white dark:bg-neutral-900"
+                id="stack"
+            >
+                <div className="max-w-7xl mx-auto">
+                    <div className="mb-16 text-center">
+                        <div className="inline-block">
+                            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">
+                                Tools & Technologies
+                            </h2>
+                            <div className="h-1.5 bg-gradient-to-r from-sky-600 to-blue-600 rounded-full"></div>
+                        </div>
+                        <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+                            My development and productivity toolkit
+                        </p>
+                    </div>
+
+                    <div className="space-y-8">
+                        {/* Development Tools */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
+                                Development
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {tools.development.map((tool) => (
+                                    <a
+                                        key={tool.name}
+                                        href={tool.url}
+                                        target="_blank"
+                                        className="group flex items-center gap-4 p-5 bg-neutral-50 dark:bg-neutral-800 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-900/20 border border-neutral-200 dark:border-neutral-700 hover:border-sky-600 dark:hover:border-sky-600 transition-all duration-200 hover:shadow-lg"
+                                    >
+                                        <Image 
+                                            src={tool.image} 
+                                            className="w-12 h-12 rounded-lg flex-shrink-0" 
+                                            alt={tool.name}
+                                        />
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <h4 className="font-semibold text-lg text-neutral-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                                                    {tool.name}
+                                                </h4>
+                                                {tool.featured && (
+                                                    <span className="px-2 py-0.5 bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300 text-xs font-medium rounded">
+                                                        Featured
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                                                {tool.description}
+                                            </p>
+                                        </div>
+                                        <svg className="w-5 h-5 text-neutral-400 group-hover:text-sky-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Productivity Tools */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-6">
+                                Productivity
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {tools.productivity.map((tool) => (
+                                    <a
+                                        key={tool.name}
+                                        href={tool.url}
+                                        target="_blank"
+                                        className="group flex items-center gap-4 p-5 bg-neutral-50 dark:bg-neutral-800 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-900/20 border border-neutral-200 dark:border-neutral-700 hover:border-sky-600 dark:hover:border-sky-600 transition-all duration-200 hover:shadow-lg"
+                                    >
+                                        <Image 
+                                            src={tool.image} 
+                                            className="w-12 h-12 rounded-lg flex-shrink-0" 
+                                            alt={tool.name}
+                                        />
+                                        <div className="flex-1">
+                                            <h4 className="font-semibold text-lg text-neutral-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors mb-1">
+                                                {tool.name}
+                                            </h4>
+                                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                                                {tool.description}
+                                            </p>
+                                        </div>
+                                        <svg className="w-5 h-5 text-neutral-400 group-hover:text-sky-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

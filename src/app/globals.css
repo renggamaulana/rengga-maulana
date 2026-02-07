@@ -2,102 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+}
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Scroll behavior */
+  html {
+    scroll-behavior: smooth;
   }
-}
-html[data-theme='light'] {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
 
-html[data-theme='dark'] {
-  --bg-color: #000000;
-  --text-color: #ffffff;
-}
-
-
-.hidden-section {
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateX(-100%);
-  transition: all 1s;
-}
-
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
-}
-
-@media(prefers-reduced-motion) {
+  /* Animation for sections */
   .hidden-section {
-      transition: none;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .hidden-section.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Blob animation for hero background */
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(to right, #0284c7, #0ea5e9, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Custom shadows */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.4);
+  }
+
+  /* Hover lift effect */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white dark:bg-neutral-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white border-2 border-neutral-900 dark:border-white rounded-lg font-semibold hover:bg-neutral-900 hover:text-white dark:hover:bg-white dark:hover:text-neutral-900 transition-all duration-200;
   }
 }
 
-
-/* Default styles for light mode */
-
-/* Apply these variables to your body or main tag */
-body, main {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  /* transition: background-color 0.3s, color 0.3s; */
-}
-
-/* width */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #5e5e5e;
+  background: rgb(243 244 246);
 }
 
-/* Handle */
+.dark ::-webkit-scrollbar-track {
+  background: rgb(23 23 23);
+}
+
 ::-webkit-scrollbar-thumb {
-  background: #1491cf;
+  background: rgb(156 163 175);
   border-radius: 5px;
 }
 
-/* Handle on hover */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(82 82 82);
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #1385be;
+  background: rgb(107 114 128);
 }
 
-.capriola {
-  font-family: var(--font-capriola);
-}
-
-.adventPro {
-  font-family: var(--font-advent-pro);
-  font-weight: 200;
-  color: #5c5cff;
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(115 115 115);
 }
