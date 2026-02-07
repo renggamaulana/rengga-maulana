@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import profile from '../../assets/images/profile1.jpeg'
+import profile from '../../assets/images/profile.jpeg'
 import SocialMedia from "@/components/SocialMedia";
 import { usePathname } from "next/navigation";
 
