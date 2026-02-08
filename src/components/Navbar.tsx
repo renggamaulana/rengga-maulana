@@ -94,7 +94,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {/* Resume Button - Desktop */}
             <a
-              href="https://drive.google.com/file/d/190WQcXYJDfb08W8uEm1MecsWbZs1zhpj/view"
+              href="https://drive.google.com/file/d/1kuHQfmuw4TFLaVXnFlgje_aPzhQulN7b/view"
               target="_blank"
               className="hidden lg:inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
             >
