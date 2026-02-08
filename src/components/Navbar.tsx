@@ -172,7 +172,7 @@ export default function Navbar() {
             ))}
 
             <a
-              href="https://drive.google.com/file/d/190WQcXYJDfb08W8uEm1MecsWbZs1zhpj/view"
+              href="https://drive.google.com/file/d/1ugbzGsI6qEdMuAYpzr3_bcm1Tlyq30_P/view"
               target="_blank"
               className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-sky-600 to-blue-600 text-white rounded-lg font-semibold shadow-lg"
             >
